@@ -27,5 +27,6 @@
     fluffychat
     firefox-devedition
     stellarium
+    vscode
   ];
 }

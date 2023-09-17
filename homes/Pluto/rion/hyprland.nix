@@ -11,10 +11,14 @@
   ];
 
    monitor = [
-    "eDP-1,1920x1080,0x0,1"
+    "eDP-1,2736x1824,0x0,2"
   ];
 
-  "env" = "XCURSOR_SIZE,24";
+  env = {
+    "XCURSOR_SIZE,24";
+    "GDK_SCALE,2";
+  };
+  
   "$mod" = "SUPER";
   input = {
     kb_layout = "gb";
