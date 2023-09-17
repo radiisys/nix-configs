@@ -25,13 +25,13 @@
     username = "maya";
     homeDirectory = "/home/maya";
     file.".config/hypr/hyprpaper.conf".text = ''
-      preload = ~/.config/nixos/wallpapers/wallpaper1.jpg
-      wallpaper = eDP-1,~/.config/nixos/wallpapers/wallpaper1.jpg
+      preload = ~/.config/nixos/wallpapers/sl.jpg
+      wallpaper = eDP-1,~/.config/nixos/wallpapers/sl.jpg
     '';
     file.".config/lockonsleep/config.sh".text = ''
       exec swayidle -w \
-        timeout 240 'gtklock -d -b ~/.config/nixos/wallpapers/wallpaper1.jpg' \
-        before-sleep 'gtklock -d -b ~/.config/nixos/wallpapers/wallpaper1.jpg'
+        timeout 300 'gtklock -d -b ~/.config/nixos/wallpapers/sl.jpg' \
+        before-sleep 'gtklock -d -b ~/.config/nixos/wallpapers/sl.jpg'
     '';
   };
 
