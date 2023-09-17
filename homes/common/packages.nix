@@ -22,7 +22,6 @@
     tidal-hifi
     transmission
     spotify
-    vscodium
     chromium
     fluffychat
     firefox-devedition
