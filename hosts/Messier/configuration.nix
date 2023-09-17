@@ -60,7 +60,7 @@
     adb.enable = true;
     ssh = {
       askPassword = true;
-      askPasswordEnable = true;
+      enableAskPassword = true;
     };
   };
 
