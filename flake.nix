@@ -116,6 +116,17 @@
           {wayland.windowManager.hyprland.enable = true;}
         ];
       };
+
+       "maya@Edible" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          # > Our main home-manager configuration file <
+          ./homes/Edible
+          hyprland.homeManagerModules.default
+          {wayland.windowManager.hyprland.enable = true;}
+        ];
+      };
        "rion@Pluto" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
@@ -126,6 +137,7 @@
           {wayland.windowManager.hyprland.enable = true;}
         ];
       };
+      
     };
   };
 }

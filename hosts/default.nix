@@ -13,6 +13,7 @@
   homePluto = ../homes/Pluto;
   homeDysnomia = ../homes/Dysnomia;
   homeCygnus = ../homes/Cygnus;
+  homeEdible = ../homes/Edible
 
 in {
   Dysnomia = nixpkgs.lib.nixosSystem {
@@ -59,6 +60,16 @@ in {
       homeCygnus
     ];
   };
+
+  Edible = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs outputs;};
+    modules = [
+      nixos-hardware.nixosModules.microsoft-surface-common
+      ./Edible/configuration.nix
+      # use the nixos-module for home-manager
+      home-manager
+      homeEdible
+    ];
 
   Pluto = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs outputs;};
