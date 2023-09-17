@@ -18,10 +18,10 @@
     force_zero_scaling = true;
   };
 
-  env = {
-    "XCURSOR_SIZE,24";
-    "GDK_SCALE,1.5";
-  };
+  env = [
+    "XCURSOR_SIZE,24"
+    "GDK_SCALE,1.5"
+  ];
 
   "$mod" = "SUPER";
   input = {
