@@ -59,7 +59,7 @@
     nm-applet.enable = true;
     adb.enable = true;
     ssh = {
-      askPassword = true;
+      askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
       enableAskPassword = true;
     };
   };
