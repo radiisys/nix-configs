@@ -70,6 +70,7 @@ in {
       home-manager
       homeEdible
     ];
+  };
 
   Pluto = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs outputs;};
