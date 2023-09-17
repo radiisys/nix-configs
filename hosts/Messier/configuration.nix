@@ -58,6 +58,10 @@
     steam.enable = true;
     nm-applet.enable = true;
     adb.enable = true;
+    ssh = {
+      askPassword = true;
+      askPasswordEnable = true;
+    };
   };
 
   environment.systemPackages = with pkgs; [

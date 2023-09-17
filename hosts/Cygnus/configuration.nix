@@ -81,7 +81,6 @@
     adwaita-qt6
     deepin.udisks2-qt5
     cinnamon.nemo
-    playonlinux
   ];
   
   xdg.portal = {
