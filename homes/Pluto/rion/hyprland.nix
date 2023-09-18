@@ -11,12 +11,16 @@
   ];
 
    monitor = [
-    "eDP-1,highres,auto,1"
+    "eDP-1,highres,auto,2"
   ];
 
-  env = [
+  xwayland = {
+    force_zero_scaling = true;
+  };
+  
+  "env" = [
     "XCURSOR_SIZE,24"
-    "GDK_SCALE,1"
+    "GDK_SCALE,2"
   ];
   
   "$mod" = "SUPER";
@@ -25,7 +29,7 @@
     kb_variant = "colemak";
     follow_mouse = 1;
     touchpad.natural_scroll = "no";
-    sensitivity = -0.5;
+    sensitivity = 0;
   };
 
   general = {

@@ -11,7 +11,7 @@
   ];
 
    monitor = [
-    "eDP-1,2256x1504,0x0,1.5"
+    "eDP-1,highres,auto,2"
   ];
 
   xwayland = {
@@ -20,7 +20,7 @@
 
   env = [
     "XCURSOR_SIZE,24"
-    "GDK_SCALE,1.5"
+    "GDK_SCALE,2"
   ];
 
   "$mod" = "SUPER";

@@ -15,7 +15,15 @@
     "HDMI-A-1,1080x2160,440x1080,auto,transform,3"
   ];
 
-  "env" = "XCURSOR_SIZE,24";
+  xwayland = {
+    force_zero_scaling = true;
+  };
+
+  env = [
+    "XCURSOR_SIZE,24"
+    "GDK_SCALE,2"
+  ];
+
   "$mod" = "SUPER";
   input = {
     kb_layout = "gb";
