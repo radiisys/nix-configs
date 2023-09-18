@@ -68,9 +68,6 @@
     temurin-jre-bin-8
     temurin-bin-18
     font-awesome
-    (pkgs.discord-canary.override {
-	withVencord = true;
-    })
     blueman
     bluez
     bluez-alsa
