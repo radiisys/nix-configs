@@ -11,12 +11,12 @@
   ];
 
    monitor = [
-    "eDP-1,2736x1824,0x0,2"
+    "eDP-1,highres,auto,1"
   ];
 
   env = [
     "XCURSOR_SIZE,24"
-    "GDK_SCALE,2"
+    "GDK_SCALE,1"
   ];
   
   "$mod" = "SUPER";
