@@ -61,36 +61,30 @@
     adb.enable = true;
   };
 
-  environment.systemPackages = [
-    pkgs.swayidle
-    pkgs.gtklock
+  environment.systemPackages = with pkgs [
+    swayidle
+    gtklock
     (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
-    pkgs.temurin-jre-bin-8
-    pkgs.temurin-bin-18
-    pkgs.libinput
-    pkgs.font-awesome
+    temurin-jre-bin-8
+    temurin-bin-18
+    font-awesome
     (pkgs.discord-canary.override {
 	withVencord = true;
     })
-    pkgs.blueman
-    pkgs.bluez
-    pkgs.bluez-alsa
-    pkgs.swaynotificationcenter
-    pkgs.polkit_gnome
-    pkgs.jetbrains-mono
-    pkgs.libsForQt5.qt5ct
-    pkgs.xdg-desktop-portal-hyprland
-    pkgs.gparted
-    pkgs.udiskie
-    pkgs.adwaita-qt
-    pkgs.adwaita-qt6
-    pkgs.deepin.udisks2-qt5
-    pkgs.cinnamon.nemo
-    pkgs.waybar
+    blueman
+    bluez
+    bluez-alsa
+    swaynotificationcenter
+    polkit_gnome
+    jetbrains-mono
+    xdg-desktop-portal-hyprland
+    udiskie
+    cinnamon.nemo
   ];
   
   xdg.portal = {
       enable = true;
+      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
   };
 
   security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
@@ -99,11 +93,6 @@
 	font-awesome
 	jetbrains-mono
   ];
-
-  environment.variables = {
-	QT_QPA_PLATFORMTHEME="qt5ct";
-  };
-
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -185,7 +174,6 @@
 };
 
   services.lvm.enable = true;
-  services.fprintd.enable = true;
 
   # define user acc
   users.users.rion = {

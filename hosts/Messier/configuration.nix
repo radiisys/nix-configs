@@ -58,10 +58,6 @@
     steam.enable = true;
     nm-applet.enable = true;
     adb.enable = true;
-    ssh = {
-      askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
-      enableAskPassword = true;
-    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -70,7 +66,6 @@
     (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
     temurin-jre-bin-8
     temurin-bin-18
-    libinput
     font-awesome
     blueman
     bluez
@@ -78,18 +73,14 @@
     swaynotificationcenter
     polkit_gnome
     jetbrains-mono
-    libsForQt5.qt5ct
     xdg-desktop-portal-hyprland
     udiskie
-    adwaita-qt
-    adwaita-qt6
-    deepin.udisks2-qt5
     cinnamon.nemo
-    playonlinux
   ];
   
   xdg.portal = {
       enable = true;
+      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
   };
 
   security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
@@ -98,11 +89,6 @@
 	font-awesome
 	jetbrains-mono
   ];
-
-  environment.variables = {
-	QT_QPA_PLATFORMTHEME="qt5ct";
-  };
-
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;

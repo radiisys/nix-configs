@@ -81,10 +81,9 @@
   
   xdg.portal = {
       enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-hyprland
-    ];
+      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
   };
+
   security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
   
   fonts.packages = with pkgs; [

@@ -66,7 +66,6 @@
     (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
     temurin-jre-bin-8
     temurin-bin-18
-    libinput
     font-awesome
     blueman
     bluez
@@ -76,8 +75,6 @@
     jetbrains-mono
     xdg-desktop-portal-hyprland
     udiskie
-    adwaita-qt
-    adwaita-qt6
     cinnamon.nemo
   ];
   

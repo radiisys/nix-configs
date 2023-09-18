@@ -67,23 +67,21 @@
     (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
     temurin-jre-bin-8
     temurin-bin-18
-    libinput
     font-awesome
     blueman
     bluez
     bluez-alsa
     swaynotificationcenter
     polkit_gnome
+    udiskie
     jetbrains-mono
-    libsForQt5.qt5ct
     xdg-desktop-portal-hyprland
-    adwaita-qt
-    adwaita-qt6
     cinnamon.nemo
   ];
   
   xdg.portal = {
       enable = true;
+      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
   };
 
   security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
@@ -92,11 +90,6 @@
 	font-awesome
 	jetbrains-mono
   ];
-
-  environment.variables = {
-	QT_QPA_PLATFORMTHEME="qt5ct";
-  };
-
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;

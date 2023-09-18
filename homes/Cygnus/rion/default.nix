@@ -17,6 +17,7 @@
     ../../common/packages.nix
     ../../common/programs.nix
     ../../common/arrpc.nix
+    ../../common/udiskie.nix
   ];
 
   home = {

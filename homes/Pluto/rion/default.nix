@@ -17,6 +17,7 @@
     ../../common/packages.nix # home.packages and similar stuff
     ../../common/programs.nix # programs.<programName>.enable
     ../../common/arrpc.nix
+    ../../common/udiskie.nix
   ];
 
   home = {
