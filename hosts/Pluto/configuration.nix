@@ -61,7 +61,7 @@
     adb.enable = true;
   };
 
-  environment.systemPackages = with pkgs [
+  environment.systemPackages = with pkgs; [
     swayidle
     gtklock
     (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
