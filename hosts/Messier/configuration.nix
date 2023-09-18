@@ -63,7 +63,7 @@
   environment.systemPackages = with pkgs; [
     swayidle
     gtklock
-    (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
+    (pkgs.python3.withPackages(ps: with ps; [ tkinter ]))
     temurin-jre-bin-8
     temurin-bin-18
     font-awesome
