@@ -63,6 +63,7 @@
 
   environment.systemPackages = with pkgs; [
     swayidle
+    squeekboard
     gtklock
     (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
     temurin-jre-bin-8
