@@ -36,6 +36,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
     systemdIntegration = true;
     settings = import ./hyprland.nix;
   };
