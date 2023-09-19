@@ -62,7 +62,10 @@
   };
 
   environment.systemPackages = with pkgs; [
+    logitech-udev-rules
+    solaar
     swayidle
+    wvkbd
     squeekboard
     gtklock
     (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
