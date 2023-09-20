@@ -81,6 +81,9 @@
     xdg-desktop-portal-hyprland
     udiskie
     cinnamon.nemo
+    msitools
+    gcab
+    dos2unix
   ];
   
   xdg.portal = {
@@ -97,7 +100,7 @@
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
-
+  services.fwupd.enable = true;
   # TODO: Set your hostname
   networking.hostName = "Pluto";
 

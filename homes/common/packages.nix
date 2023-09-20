@@ -26,6 +26,7 @@
     fluffychat
     firefox-devedition
     stellarium
+    beeper
     vscodium
   ];
 }
