@@ -86,6 +86,7 @@
     msitools
     gcab
     dos2unix
+    exfat-utils
   ];
   
   xdg.portal = {
@@ -114,7 +115,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/";
-  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
 
   # enable networking
   networking.networkmanager.enable = true;
