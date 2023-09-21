@@ -86,7 +86,6 @@
     msitools
     gcab
     dos2unix
-    exfat-utils
   ];
   
   xdg.portal = {
