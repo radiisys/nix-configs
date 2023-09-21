@@ -100,9 +100,7 @@
   # TODO: Set your hostname
   networking.hostName = "Messier";
 
-
   virtualisation.libvirtd.enable = true;
-
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
@@ -175,7 +173,9 @@
       };
   };
 };
+
   services.lvm.enable = true;
+  
   # define user acc
   users.users.rion = {
     isNormalUser = true;

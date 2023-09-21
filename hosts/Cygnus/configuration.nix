@@ -105,6 +105,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/";
+  boot.supportedFilesystems = [ "exfat" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # enable networking
   networking.networkmanager.enable = true;
@@ -175,7 +177,9 @@
       };
   };
 };
+
   services.lvm.enable = true;
+  
   # define user acc
   users.users.rion = {
     isNormalUser = true;

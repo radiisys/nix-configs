@@ -97,15 +97,18 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  # TODO: Set your hostname
+  # Set your hostname
   networking.hostName = "Edible";
 
   virtualisation.libvirtd.enable = true;
 
-  # TODO: This is just an example, be sure to use whatever bootloader you prefer
+  # setting up systemd-boot
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/";
+  boot.supportedFilesystems = [ "exfat" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  
   # enable networking
   networking.networkmanager.enable = true;
 
@@ -146,6 +149,7 @@
 
   # udisks
   services.udisks2.enable = true;
+
   # Would you like to be able to fucking print?
   services.printing.enable = true;
 
@@ -175,8 +179,11 @@
       };
   };
 };
+
+  # LVM shit because h
   services.lvm.enable = true;
-  # define user acc
+
+  # Define your user account here
   users.users.maya = {
     isNormalUser = true;
     description = "Maya";
@@ -186,8 +193,7 @@
     ];
   };
 
-  # This setups a SSH server. Very important if you're setting up a headless system.
-  # Feel free to remove if you don't need it.
+  # SSH stuff, touch this if you care / don't care about ssh
   services.openssh.settings = {
     enable = true;
     # Forbid root login through SSH.

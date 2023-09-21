@@ -107,6 +107,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/";
+  boot.supportedFilesystems = [ "exfat" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # enable networking
   networking.networkmanager.enable = true;
