@@ -109,6 +109,14 @@
 
   virtualisation.vmware.host.enable = true;
   virtualisation.libvirtd.enable = true;
+
+  dconf.settings = {
+  "org/virt-manager/virt-manager/connections" = {
+    autoconnect = ["qemu:///system"];
+    uris = ["qemu:///system"];
+  };
+};
+
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -185,7 +193,7 @@
   users.users.rion = {
     isNormalUser = true;
     description = "Rion";
-    extraGroups = ["networkmanager" "wheel" "adbusers"];
+    extraGroups = ["networkmanager" "wheel" "adbusers" "libvirtd"];
     openssh.authorizedKeys.keys = [
       # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
     ];
