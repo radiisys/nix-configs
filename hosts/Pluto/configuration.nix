@@ -59,15 +59,7 @@
     steam.enable = true;
     nm-applet.enable = true;
     adb.enable = true;
-    dconf = {
-	enable = true;
-	settings = {
-		"org/virt-manager/virt-manager/connections" = {
-			autoconnect = ["qemu:///system"];
-			uris = ["qemu:///system"];
-		};
-	};
-   };
+    dconf.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -122,6 +114,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/";
+  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
 
   # enable networking
   networking.networkmanager.enable = true;
