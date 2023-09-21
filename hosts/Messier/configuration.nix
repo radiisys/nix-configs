@@ -101,7 +101,6 @@
   networking.hostName = "Messier";
 
 
-  virtualisation.vmware.host.enable = true;
   virtualisation.libvirtd.enable = true;
 
 

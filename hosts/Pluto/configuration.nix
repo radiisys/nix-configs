@@ -105,9 +105,7 @@
   services.fwupd.enable = true;
   # TODO: Set your hostname
   networking.hostName = "Pluto";
-
-
-  virtualisation.vmware.host.enable = true;
+  
   virtualisation.libvirtd.enable = true;
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
