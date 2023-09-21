@@ -58,9 +58,13 @@
     steam.enable = true;
     nm-applet.enable = true;
     adb.enable = true;
+    dconf.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
+    virt-manager
+    solaar
+    logitech-udev-rules
     swayidle
     exfat
     gtklock
@@ -96,6 +100,8 @@
 
   # TODO: Set your hostname
   networking.hostName = "Dysnomia";
+
+  virtualisation.libvirtd.enable = true;
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
@@ -173,7 +179,7 @@
   users.users.rion = {
     isNormalUser = true;
     description = "Rion";
-    extraGroups = ["networkmanager" "wheel" "adbusers"];
+    extraGroups = ["networkmanager" "wheel" "adbusers" "libvirtd"];
     openssh.authorizedKeys.keys = [
       # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
     ];
