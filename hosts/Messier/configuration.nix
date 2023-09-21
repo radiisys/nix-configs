@@ -58,9 +58,13 @@
     steam.enable = true;
     nm-applet.enable = true;
     adb.enable = true;
+    dconf.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
+    logitech-udev-rules
+    virt-manager
+    solaar
     swayidle
     gtklock
     (pkgs.python3.withPackages(ps: with ps; [ tkinter ]))
@@ -98,11 +102,14 @@
 
 
   virtualisation.vmware.host.enable = true;
+  virtualisation.libvirtd.enable = true;
+
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/";
+  
   # enable networking
   networking.networkmanager.enable = true;
 
@@ -172,7 +179,7 @@
   users.users.rion = {
     isNormalUser = true;
     description = "Rion";
-    extraGroups = ["networkmanager" "wheel" "adbusers"];
+    extraGroups = ["networkmanager" "wheel" "adbusers" "libvirtd"];
     openssh.authorizedKeys.keys = [
       # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
     ];
