@@ -59,7 +59,15 @@
     steam.enable = true;
     nm-applet.enable = true;
     adb.enable = true;
-    dconf.enable = true;
+    dconf = {
+	enable = true;
+	settings = {
+		"org/virt-manager/virt-manager/connections" = {
+			autoconnect = ["qemu:///system"];
+			uris = ["qemu:///system"];
+		};
+	};
+   };
   };
 
   environment.systemPackages = with pkgs; [
@@ -109,13 +117,6 @@
 
   virtualisation.vmware.host.enable = true;
   virtualisation.libvirtd.enable = true;
-
-  dconf.settings = {
-  "org/virt-manager/virt-manager/connections" = {
-    autoconnect = ["qemu:///system"];
-    uris = ["qemu:///system"];
-  };
-};
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
