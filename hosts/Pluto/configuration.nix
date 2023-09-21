@@ -59,10 +59,12 @@
     steam.enable = true;
     nm-applet.enable = true;
     adb.enable = true;
+    dconf.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
+    virt-manager
     solaar
     swayidle
     wvkbd
@@ -106,7 +108,7 @@
 
 
   virtualisation.vmware.host.enable = true;
-
+  virtualisation.libvirtd.enable = true;
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
