@@ -74,7 +74,7 @@
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-       "rion@Messier" = home-manager.lib.homeManagerConfiguration {
+       "radisys@Messier" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
@@ -84,7 +84,7 @@
           {wayland.windowManager.hyprland.enable = true;}
         ];
       };
-       "rion@Dysnomia" = home-manager.lib.homeManagerConfiguration {
+       "radisys@Dysnomia" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
@@ -95,7 +95,7 @@
         ];
       };
 
-      "rion@Cygnus" = home-manager.lib.homeManagerConfiguration {
+      "radisys@Cygnus" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
@@ -106,7 +106,7 @@
         ];
       };
 
-       "rion@Nebula" = home-manager.lib.homeManagerConfiguration {
+       "radisys@Nebula" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
@@ -127,7 +127,7 @@
           {wayland.windowManager.hyprland.enable = true;}
         ];
       };
-       "rion@Pluto" = home-manager.lib.homeManagerConfiguration {
+       "radisys@Pluto" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [

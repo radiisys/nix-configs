@@ -21,8 +21,8 @@
   ];
 
   home = {
-    username = "rion";
-    homeDirectory = "/home/rion";
+    username = "radisys";
+    homeDirectory = "/home/radisys";
     file.".config/hypr/hyprpaper.conf".text = ''
       preload = ~/.config/nixos/wallpapers/wallpaper1.jpg
       wallpaper = eDP-1,~/.config/nixos/wallpapers/wallpaper1.jpg

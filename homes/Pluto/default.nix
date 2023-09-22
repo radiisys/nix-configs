@@ -12,7 +12,7 @@
       inherit (config.networking) hostName;
     };
     users = {
-      rion = ./rion;
+      radisys = ./radisys;
       # more users can go here, the format is only for convenience
     };
   };

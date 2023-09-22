@@ -181,9 +181,9 @@
   services.lvm.enable = true;
   
   # define user acc
-  users.users.rion = {
+  users.users.radisys = {
     isNormalUser = true;
-    description = "Rion";
+    description = "radisys";
     extraGroups = ["networkmanager" "wheel" "adbusers" "libvirtd"];
     openssh.authorizedKeys.keys = [
       # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
