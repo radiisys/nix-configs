@@ -98,7 +98,7 @@
   # TODO: Set your hostname
   networking.hostName = "Nebula";
 
-    virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
@@ -106,11 +106,13 @@
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "kvm-intel" "wl" "b43" ];
+  boot.kernelModules = [ "kvm-intel" "b43" ];
+  boot.initrd.kernelModules = [ "b43" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
   # enable networking
   networking.networkmanager.enable = true;
+  networking.enableB43Firmware = true;
 
   # Set a time zone, idiot
   time.timeZone = "Europe/London";
