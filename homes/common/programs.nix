@@ -3,7 +3,7 @@ _: {
   programs = {
     git = {
 	enable = true;
-	userName = "RionWren";
+	userName = "radiisys";
 	userEmail = "rionwren@proton.me";
 	extraConfig = {
 		commit.gpgsign = true;
