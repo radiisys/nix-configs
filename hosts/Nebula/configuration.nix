@@ -106,7 +106,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.extraModulePackages = [ "config.boot.kernelPackages.broadcom_sta" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
   # enable networking
   networking.networkmanager.enable = true;
