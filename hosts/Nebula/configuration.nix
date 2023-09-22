@@ -106,8 +106,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "kvm-intel" "b43" ];
-  boot.initrd.kernelModules = [ "b43" ];
+  boot.kernelModules = [ "kvm-intel" "b43" "wl" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
   # enable networking
