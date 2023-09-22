@@ -181,7 +181,6 @@
     isNormalUser = true;
     description = "radisys";
     extraGroups = ["networkmanager" "wheel" "adbusers" "libvirtd"];
-    hashedPassword = "$6$7pPF.zDObIgTwCd4$EaLHJtc1M9XA3pg4SuOVdH3TWlaHnZAJWO0EEnIZa.fNJC68oYEnc4a.wZIii.1mUiuuJol/wBScQVZoZqONl/";
     openssh.authorizedKeys.keys = [
       # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
     ];
