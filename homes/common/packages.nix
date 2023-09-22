@@ -27,5 +27,6 @@
     stellarium
     beeper
     vscodium
+    tidal-dl
   ];
 }
