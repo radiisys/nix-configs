@@ -19,7 +19,6 @@
     wl-clipboard
     wev
     tidal-hifi
-    transmission
     transmission-qt
     spotify
     chromium
