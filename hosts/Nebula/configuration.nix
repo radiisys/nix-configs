@@ -100,8 +100,8 @@
 
   virtualisation.libvirtd = {
 	enable = true;
-	qemuOvmf = true;
-	qemuRunAsRoot = true;
+	qemu.ovmf = true;
+	qemu.RunAsRoot = true;
   };
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
