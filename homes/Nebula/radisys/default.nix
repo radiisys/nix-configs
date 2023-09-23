@@ -27,8 +27,8 @@
     file.".config/hypr/hyprpaper.conf".text = ''
       preload = ~/.config/nixos/wallpapers/wallpaper1.jpg
       wallpaper = DVI-D-1,~/.config/nixos/wallpapers/wallpaper1.jpg
-      wallpaper = DP-3,~/.config/nixos/wallpapers/wallpaper1.jpg
-      wallpaper = HDMI-A-1,~/.config/nixos/wallpapers/wallpaper1.jpg
+      wallpaper = DP-4,~/.config/nixos/wallpapers/wallpaper1.jpg
+      wallpaper = HDMI-A-2,~/.config/nixos/wallpapers/wallpaper1.jpg
     '';
     file.".config/lockonsleep/config.sh".text = ''
       exec swayidle -w \
