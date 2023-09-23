@@ -157,6 +157,11 @@
     pulse.enable = true;
   };
 
+  
+  services.logind = {
+    extraConfig = "HandlePowerKey=suspend";
+  };
+
   security.polkit.enable = true;
 
  systemd = {
