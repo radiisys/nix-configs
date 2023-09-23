@@ -108,6 +108,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-intel" "b43" "wl" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+  boot.extraModprobeConfig = "options kvm_intel nested=1";
 
   # enable networking
   networking.networkmanager.enable = true;
