@@ -188,6 +188,8 @@
 
   services.lvm.enable = true;
 
+  services.zerotierone.enable = true;
+  
   # define user acc
   users.users.radisys = {
     isNormalUser = true;

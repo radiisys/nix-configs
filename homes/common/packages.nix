@@ -28,6 +28,5 @@
     beeper
     vscodium
     tidal-dl
-    zerotierone
   ];
 }
