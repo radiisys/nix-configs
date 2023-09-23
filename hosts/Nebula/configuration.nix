@@ -81,6 +81,7 @@
     adwaita-qt6
     cinnamon.nemo
     udiskie
+    libsForQt5.ark
   ];
   
   xdg.portal = {
