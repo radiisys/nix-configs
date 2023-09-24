@@ -67,6 +67,9 @@
     logitech-udev-rules
     swayidle
     gtklock
+    (pkgs.discord-canary.override {
+	withVencord = true;
+    })
     (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
     temurin-jre-bin-8
     temurin-bin-18
