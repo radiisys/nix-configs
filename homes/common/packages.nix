@@ -28,5 +28,6 @@
     beeper
     vscodium
     tidal-dl
+    mumble
   ];
 }
