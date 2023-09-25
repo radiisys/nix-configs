@@ -80,6 +80,7 @@
     xdg-desktop-portal-hyprland
     udiskie
     cinnamon.nemo
+    libsForQt5.ark
   ];
   
   xdg.portal = {
