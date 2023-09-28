@@ -24,6 +24,22 @@
     ./hardware-configuration.nix
   ];
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = true;
+    nvidiaSettings = true;
+  };
+
   nixpkgs = {
     # Configure your nixpkgs instance
     config = {
@@ -54,6 +70,7 @@
     hyprland = {
 	enable = true;
 	xwayland.enable = true;
+  enableNvidiaPatches = true;
     };
     steam.enable = true;
     nm-applet.enable = true;
@@ -81,6 +98,7 @@
     udiskie
     cinnamon.nemo
     libsForQt5.ark
+    lshw
   ];
   
   xdg.portal = {
