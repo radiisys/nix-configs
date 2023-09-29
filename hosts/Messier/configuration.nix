@@ -120,7 +120,7 @@
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
-
+  services.fwupd.enable = true;
   # TODO: Set your hostname
   networking.hostName = "Messier";
 
