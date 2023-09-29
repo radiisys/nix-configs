@@ -43,7 +43,7 @@
   hardware.nvidia.prime = {
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";
-    sync.enable = true;
+    reverseSync.enable = true;
   };
 
   nixpkgs = {
@@ -132,7 +132,6 @@
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ "nomodeset" ];
 
   # enable networking
   networking.networkmanager.enable = true;
