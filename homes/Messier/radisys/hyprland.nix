@@ -11,8 +11,7 @@
   ];
 
    monitor = [
-    "eDP-1,highres,auto,2"
-    "DP-3,1280x1024,auto,1"
+    "eDP-1,3840x2160,auto,2"
   ];
 
    xwayland = {
@@ -23,7 +22,7 @@
     "XCURSOR_SIZE,24"
     "GDK_SCALE,2"
     "LIBVA_DRIVER_NAME,nvidia"
-    "GBM_BACKEND,nvidia-drm"
+    "GBM_BACKEND,nvidia"
     "__GLX_VENDOR_LIBRARY_NAME,nvidia"
     "WLR_NO_HARDWARE_CURSORS,1"
   ];
