@@ -11,14 +11,23 @@
   ];
 
    monitor = [
-    "eDP-1,3840x2160,0x0,2"
+    "eDP-1,hires,auto,2"
+    "DP-3,1280x1024,auto,1"
   ];
 
    xwayland = {
     force_zero_scaling = true;
    };
 
-  "env" = "XCURSOR_SIZE,24";
+  "env" = [
+    "XCURSOR_SIZE,24"
+    "GDK_SCALE,2"
+    "LIBVA_DRIVER_NAME,nvidia"
+    "GBM_BACKEND,nvidia-drm"
+    "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+    "WLR_NO_HARDWARE_CURSORS,1"
+  ];
+
   "$mod" = "SUPER";
   input = {
     kb_layout = "us";
