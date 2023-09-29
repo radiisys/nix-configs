@@ -11,7 +11,7 @@
   ];
 
    monitor = [
-    "eDP-1,hires,auto,2"
+    "eDP-1,highres,auto,2"
     "DP-3,1280x1024,auto,1"
   ];
 
