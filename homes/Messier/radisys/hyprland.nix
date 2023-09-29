@@ -23,7 +23,6 @@
     "GDK_SCALE,2"
     "LIBVA_DRIVER_NAME,nvidia"
     "GBM_BACKEND,nvidia"
-    "__GLX_VENDOR_LIBRARY_NAME,nvidia"
     "WLR_NO_HARDWARE_CURSORS,1"
   ];
 
