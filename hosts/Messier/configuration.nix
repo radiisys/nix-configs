@@ -132,7 +132,8 @@
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  
+  boot.kernelParams = [ "nomodeset" ];
+
   # enable networking
   networking.networkmanager.enable = true;
 
