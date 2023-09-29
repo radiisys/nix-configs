@@ -40,6 +40,12 @@
     nvidiaSettings = true;
   };
 
+  hardware.nvidia.prime = {
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+    sync.enable = true;
+  };
+
   nixpkgs = {
     # Configure your nixpkgs instance
     config = {
@@ -70,7 +76,7 @@
     hyprland = {
 	enable = true;
 	xwayland.enable = true;
-  enableNvidiaPatches = true;
+        enableNvidiaPatches = true;
     };
     steam.enable = true;
     nm-applet.enable = true;
@@ -103,7 +109,6 @@
   
   xdg.portal = {
       enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
   };
 
   security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";

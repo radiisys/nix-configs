@@ -4,7 +4,7 @@ _: {
     git = {
 	enable = true;
 	userName = "radiisys";
-	userEmail = "rionwren@proton.me";
+	userEmail = "radisys@proton.me";
 	extraConfig = {
 		commit.gpgsign = true;
 		gpg.format = "ssh";
