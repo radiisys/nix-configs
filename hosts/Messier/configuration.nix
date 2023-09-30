@@ -52,6 +52,18 @@
     };
   };
 
+  specialisation = {
+    clamshell.configuration = {
+       system.nixos.tags = [ "clamshell" ];
+       hardware.nvidia = {
+         prime.offload.enable = lib.mkForce false;
+         prime.offload.enableOffloadCmd = lib.mkForce false;
+         prime.sync.enable = lib.mkForce true;
+         boot.kernelParams = lib.mkForce [ "acpi_rev_override" "intel_iommu=igfx_off" "nvidia_drm.modeset=1" "ibt=off" "module_blacklist=i915" ];
+       };
+    };
+  };
+
   nixpkgs = {
     # Configure your nixpkgs instance
     config = {
@@ -173,6 +185,12 @@
   services.xserver = {
     layout = "gb";
     xkbVariant = "colemak";
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 1d";
   };
 
   # udisks

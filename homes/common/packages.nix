@@ -5,7 +5,7 @@
     drawing
     signal-desktop
     scrcpy
-    kitty
+    foot
     wofi
     tetrio-desktop
     hyprpaper
