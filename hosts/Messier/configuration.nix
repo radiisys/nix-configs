@@ -57,6 +57,8 @@
        system.nixos.tags = [ "clamshell" ];
        boot.kernelParams = lib.mkForce [ "acpi_rev_override" "intel_iommu=igfx_off" "nvidia_drm.modeset=1" "ibt=off" "module_blacklist=i915" ];
        hardware.nvidia = {
+         powerManagement.enable = lib.mkForce false;
+         powerManagement.finegrained = lib.mkForce false;
          prime.offload.enable = lib.mkForce false;
          prime.offload.enableOffloadCmd = lib.mkForce false;
          prime.sync.enable = lib.mkForce true;
