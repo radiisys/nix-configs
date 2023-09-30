@@ -32,8 +32,30 @@
 
   services.xserver.videoDrivers = ["nvidia"];
 
+  services.xserver.config = ''
+    Section "Device"
+        Identifier  "Intel Graphics"
+        Driver      "intel"
+        Option      "TearFree"       "true"
+        Option      "SwapbuffersWait" "true"
+        BusID       "PCI:0:2:0"
+    EndSection
+
+    Section "Device"
+        Identifier  "nvidia"
+        Driver      "nvidia"
+        BusID       "PCI:1:0:0"
+        Option      "AllowEmptyInitialConfiguration"
+    EndSection
+  '';
+  screenSection = ''
+    Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On};
+    Option         "AllowIndirectGLXProtocol" "off"
+    Option         "TripleBuffer "on"
+  '';
+ };
+
   hardware.nvidia = {
-    modesetting.enable = true;
     powerManagement.enable = false;
     powerManagement.finegrained = false;
     open = true;
@@ -43,10 +65,11 @@
   hardware.nvidia.prime = {
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";
-    offload = {
-      enable = true;
-      enableOffloadCmd = true;
-    };
+    sync.enable = true;
+    #offload = {
+     # enable = true;
+      #enableOffloadCmd = true;
+    #};
   };
 
   nixpkgs = {
@@ -136,7 +159,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
+  boot.kernelParams = [ "acpi_rev_override" "intel_iommu=igfx_off" "nvidia-drm.modeset=1" ];
   # enable networking
   networking.networkmanager.enable = true;
 
