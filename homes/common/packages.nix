@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     obs-studio
     rnote
+    drawing
     signal-desktop
     scrcpy
     kitty
