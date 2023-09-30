@@ -90,6 +90,8 @@
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
     virt-manager
+    maliit-keyboard
+    maliit-framework
     solaar
     swayidle
     gtklock

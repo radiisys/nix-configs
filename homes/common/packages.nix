@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     obs-studio
+    rnote
     signal-desktop
     scrcpy
     kitty
