@@ -138,7 +138,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ "acpi_rev_override" "intel_iommu=igfx_off" "nvidia-drm.modeset=1" "ibt=off" ]; # if we ever stop using internal panel, blacklist i915
+  boot.kernelParams = [ "acpi_rev_override" "intel_iommu=igfx_off" "nvidia_drm.modeset=1" "ibt=off" ]; # if we ever stop using internal panel, blacklist i915
   boot.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
 
   # enable networking
