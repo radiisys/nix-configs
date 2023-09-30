@@ -30,7 +30,7 @@
     driSupport32Bit = true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = lib.mkForce ["nvidia"];
 
   hardware.nvidia = {
     powerManagement.enable = true;
