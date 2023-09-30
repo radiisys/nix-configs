@@ -55,10 +55,15 @@
   specialisation = {
     clamshell.configuration = {
        system.nixos.tags = [ "clamshell" ];
-       boot.kernelParams = lib.mkForce [ "acpi_rev_override" "intel_iommu=igfx_off" "nvidia_drm.modeset=1" "ibt=off" "module_blacklist=i915" ];
+       boot.kernelParams = [ "module_blacklist=i915" ];
+       services.logind = {
+         lidSwitch = "ignore";
+       };
        hardware.nvidia = {
          powerManagement.enable = lib.mkForce false;
          powerManagement.finegrained = lib.mkForce false;
+         prime.intelBusId = lib.mkForce "PCI:0:2:0";
+         prime.nvidiaBusId = lib.mkForce "PCI:1:0:0";
          prime.offload.enable = lib.mkForce false;
          prime.offload.enableOffloadCmd = lib.mkForce false;
          prime.sync.enable = lib.mkForce true;
