@@ -32,33 +32,13 @@
 
   services.xserver.videoDrivers = ["nvidia"];
 
-  services.xserver.config = ''
-    Section "Device"
-        Identifier  "Intel Graphics"
-        Driver      "intel"
-        Option      "TearFree"       "true"
-        Option      "SwapbuffersWait" "true"
-        BusID       "PCI:0:2:0"
-    EndSection
-
-    Section "Device"
-        Identifier  "nvidia"
-        Driver      "nvidia"
-        BusID       "PCI:1:0:0"
-        Option      "AllowEmptyInitialConfiguration"
-    EndSection
-  '';
-  screenSection = ''
-    Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On};
-    Option         "AllowIndirectGLXProtocol" "off"
-    Option         "TripleBuffer "on"
-  '';
-
   hardware.nvidia = {
     powerManagement.enable = false;
     powerManagement.finegrained = false;
     open = true;
     nvidiaSettings = true;
+    modesetting.enable = true;
+    forceFullCompositionPipeline = true;
   };
 
   hardware.nvidia.prime = {
@@ -158,7 +138,9 @@
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ "acpi_rev_override" "intel_iommu=igfx_off" "nvidia-drm.modeset=1" ];
+  boot.kernelParams = [ "acpi_rev_override" "intel_iommu=igfx_off" "nvidia-drm.modeset=1" "ibt=off" ]; # if we ever stop using internal panel, blacklist i915
+  boot.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+
   # enable networking
   networking.networkmanager.enable = true;
 
