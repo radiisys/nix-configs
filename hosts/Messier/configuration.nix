@@ -33,9 +33,10 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
+    powerManagement.enable = true;
+    powerManagement.finegrained = true;
     open = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
     nvidiaSettings = true;
     modesetting.enable = true;
     forceFullCompositionPipeline = true;
