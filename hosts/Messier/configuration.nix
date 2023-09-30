@@ -202,6 +202,7 @@
 };
 
   services.lvm.enable = true;
+  services.fprintd.enable = true;
   
   # define user acc
   users.users.radisys = {
