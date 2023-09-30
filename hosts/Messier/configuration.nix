@@ -53,7 +53,6 @@
     Option         "AllowIndirectGLXProtocol" "off"
     Option         "TripleBuffer "on"
   '';
- };
 
   hardware.nvidia = {
     powerManagement.enable = false;
