@@ -55,6 +55,32 @@
 
   environment.pathsToLink = [ "/libexec" ];
 
+  dbus-sway-environment = pkgs.writeTextFile {
+    name = "dbus-sway-invironment";
+    destination = "/bin/dbus-sway-environment";
+    executable = true;
+
+    text = ''
+      dbus-update-activation-environment --systemd WAYLAND-DISPLAY XDG-CURRENT-DESKTOP=sway
+      systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+      systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+    '';
+  };
+
+  configure-gtk = pkgs.writeTextFile {
+    name = "configure-gtk";
+    destination = "/bin/configure-gtk";
+    executable = true;
+    text = let
+      schema = pkgs.gsettings-desktop-schemas;
+      datadir = "${schema}/share/gsettings-schemas/${schema.name}";
+    in ''
+      export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
+      gnome_schema=org.gnome.desktop.interface
+      gsettings set $gnome_schema gtk-theme 'Dracula'
+    '';
+  };
+
   hardware.nvidia = {
     powerManagement.enable = true;
     powerManagement.finegrained = true;
@@ -132,6 +158,10 @@
         enableNvidiaPatches = true;
     };
     steam.enable = true;
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+    };
     nm-applet.enable = true;
     adb.enable = true;
     dconf.enable = true;
@@ -140,6 +170,14 @@
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
     nitrogen
+    dbus-sway-environment
+    configure-gtk
+    xdg-utils
+    dracula-theme
+    gnome3.adwaita-icon-theme
+    bemenu
+    wdisplays
+    glib
     virt-manager
     wvkbd
     solaar
@@ -178,6 +216,8 @@
 
   xdg.portal = {
       enable = true;
+      wlr.enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
@@ -206,6 +246,8 @@
 
   # enable networking
   networking.networkmanager.enable = true;
+
+  services.dbus.enable = true;
 
   # Set a time zone, idiot
   time.timeZone = "Europe/London";
