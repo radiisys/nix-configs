@@ -22,6 +22,7 @@
     "XCURSOR_SIZE,24"
     "GDK_SCALE,2"
     "LIBVA_DRIVER_NAME,nvidia"
+    "VDPAU_DRIVER,nvidia"
     "GBM_BACKEND,nvidia"
     "XDG_SESSION_TYPE,wayland"
     "WLR_NO_HARDWARE_CURSORS,1"
