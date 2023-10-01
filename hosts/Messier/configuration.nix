@@ -50,7 +50,6 @@
   hardware.nvidia.prime = {
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";
-    #sync.enable = true;
     offload = {
       enable = true;
       enableOffloadCmd = true;
@@ -63,6 +62,24 @@
        boot.kernelParams = [ "module_blacklist=i915" ];
        services.logind = {
          lidSwitch = "ignore";
+       };
+       environment.pathsToLink = [ "/libexec" ];
+       services.xserver = {
+         xterm.enable = false;
+         xfce = {
+           enable = true;
+           noDesktop = true;
+           enableXfwm = false;
+         };
+         windowManager.i3 = {
+           enable = true;
+	   extraPackages = with pkgs; [
+             dmenu
+             i3status
+             i3lock
+             i3blocks
+           ];
+         };
        };
        hardware.nvidia = {
          powerManagement.enable = lib.mkForce false;
