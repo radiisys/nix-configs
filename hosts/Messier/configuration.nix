@@ -35,7 +35,26 @@
     ];
   };
 
-  services.xserver.videoDrivers = lib.mkForce ["nvidia"];
+  services.xserver = {
+    videoDrivers = lib.mkForce [ "nvidia" ];
+    xterm.enable = false;
+    xfce = {
+      enable = true;
+      noDesktop = true;
+      enableXfwm = false;
+    };
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu
+        i3status
+        i3lock
+        i3blocks
+      ];
+    };
+  };
+
+  environment.pathsToLink = [ "/libexec" ];
 
   hardware.nvidia = {
     powerManagement.enable = true;
@@ -63,29 +82,9 @@
        services.logind = {
          lidSwitch = "ignore";
        };
-       environment.pathsToLink = [ "/libexec" ];
-       services.xserver = {
-         xterm.enable = false;
-         xfce = {
-           enable = true;
-           noDesktop = true;
-           enableXfwm = false;
-         };
-         windowManager.i3 = {
-           enable = true;
-	   extraPackages = with pkgs; [
-             dmenu
-             i3status
-             i3lock
-             i3blocks
-           ];
-         };
-       };
        hardware.nvidia = {
          powerManagement.enable = lib.mkForce false;
          powerManagement.finegrained = lib.mkForce false;
-         prime.intelBusId = lib.mkForce "PCI:0:2:0";
-         prime.nvidiaBusId = lib.mkForce "PCI:1:0:0";
          prime.offload.enable = lib.mkForce false;
          prime.offload.enableOffloadCmd = lib.mkForce false;
          prime.sync.enable = lib.mkForce false;
