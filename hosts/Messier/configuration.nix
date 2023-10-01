@@ -66,7 +66,7 @@
          prime.nvidiaBusId = lib.mkForce "PCI:1:0:0";
          prime.offload.enable = lib.mkForce false;
          prime.offload.enableOffloadCmd = lib.mkForce false;
-         prime.sync.enable = lib.mkForce true;
+         prime.sync.enable = lib.mkForce false;
        };
     };
   };
