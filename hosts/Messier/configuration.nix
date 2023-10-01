@@ -37,7 +37,6 @@
 
   services.xserver = {
     enable = true;
-    dpi = 200;
     displayManager.lightdm.enable = true;
     layout = "us";
     xkbVariant = "colemak";  

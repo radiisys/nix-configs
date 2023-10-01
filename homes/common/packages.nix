@@ -6,6 +6,7 @@
     signal-desktop
     scrcpy
     foot
+    alacritty
     wofi
     tetrio-desktop
     hyprpaper
