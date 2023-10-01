@@ -46,7 +46,7 @@
             pkgs.runCommand "moveUp" {} ''
               mkdir -p $out/share/icons
               ln -s ${pkgs.fetchzip {
-                url = url:
+                url = url;
                 hash = hash;
               }} $out/share/icons/${name}
           '';
