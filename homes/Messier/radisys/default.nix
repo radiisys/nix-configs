@@ -25,14 +25,20 @@
     username = "radisys";
     homeDirectory = "/home/radisys";
     file.".config/hypr/hyprpaper.conf".text = ''
-      preload = ~/.config/nixos/wallpapers/wallpaper1.jpg
-      wallpaper = eDP-1,~/.config/nixos/wallpapers/wallpaper1.jpg
+      preload = ~/.config/nixos/wallpapers/wallpaper1.png
+      wallpaper = eDP-1,~/.config/nixos/wallpapers/wallpaper1.png
     '';
     file.".config/lockonsleep/config.sh".text = ''
       exec swayidle -w \
-        timeout 240 'gtklock -d -b ~/.config/nixos/wallpapers/wallpaper1.jpg' \
-        before-sleep 'gtklock -d -b ~/.config/nixos/wallpapers/wallpaper1.jpg'
+        timeout 240 'gtklock -d -b ~/.config/nixos/wallpapers/wallpaper1.png' \
+        before-sleep 'gtklock -d -b ~/.config/nixos/wallpapers/wallpaper1.png'
     '';
+    file.".config/i3/lock.sh".text = ''
+      #!/bin/sh
+      set -e
+      xset s off dpms 0 10 0
+      i3lock --color=4c7899 --ignore-empty-password --show-failed-attempts --nofork
+      xset s off -dpms
   };
 
   home.pointerCursor =

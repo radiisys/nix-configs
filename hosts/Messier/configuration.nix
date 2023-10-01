@@ -39,6 +39,9 @@
     enable = true;
     dpi = 200;
     displayManager.lightdm.enable = true;
+    desktopManager = {
+      xterm.enable = false;
+    };
     layout = "us";
     xkbVariant = "colemak";  
     videoDrivers = lib.mkForce [ "nvidia" ];
@@ -143,6 +146,7 @@
 
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
+    xss-lock
     nitrogen
     virt-manager
     wvkbd
