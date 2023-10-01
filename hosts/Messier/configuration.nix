@@ -28,6 +28,11 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      vaapiVdpau
+      libvdpau-va-gl
+      nvidia-vaapi-driver
+    ];
   };
 
   services.xserver.videoDrivers = lib.mkForce ["nvidia"];
@@ -36,7 +41,7 @@
     powerManagement.enable = true;
     powerManagement.finegrained = true;
     open = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
     nvidiaSettings = true;
     modesetting.enable = true;
     forceFullCompositionPipeline = true;
@@ -131,6 +136,8 @@
     cinnamon.nemo
     libsForQt5.ark
     lshw
+    nvidia-vaapi-driver
+    egl-wayland
   ];
   
   xdg.portal = {
