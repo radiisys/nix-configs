@@ -78,6 +78,14 @@
     clamshell.configuration = {
        system.nixos.tags = [ "clamshell" ];
        boot.kernelParams = [ "module_blacklist=i915" ];
+       environment.sessionVariables = {
+	 GDK_SCALE = lib.mkForce "1";
+         GDK_DPI_SCALE = lib.mkForce "1";
+       };
+       environment.variables = {
+	 XCURSOR_SIZE = lib.mkForce "24";
+       };
+       services.xserver.dpi = lib.mkForce 100;
        services.logind = {
          lidSwitch = "ignore";
        };
