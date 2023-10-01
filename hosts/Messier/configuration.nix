@@ -38,6 +38,7 @@
   services.xserver = {
     enable = true;
     dpi = 200;
+    antialias = 1;
     displayManager.lightdm.enable = true;
     layout = "us";
     xkbVariant = "colemak";  
@@ -156,6 +157,13 @@
     egl-wayland
   ];
   
+  environment.sessionVariables = {
+    GDK_SCALE = "2";
+    GDK_DPI_SCALE = "0.5";
+    XCURSOR_SIZE = "32";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+  };
+
   xdg.portal = {
       enable = true;
   };
