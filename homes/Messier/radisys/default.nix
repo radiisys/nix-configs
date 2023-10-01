@@ -33,13 +33,6 @@
         timeout 240 'gtklock -d -b ~/.config/nixos/wallpapers/wallpaper1.png' \
         before-sleep 'gtklock -d -b ~/.config/nixos/wallpapers/wallpaper1.png'
     '';
-    file.".config/i3/lock.sh".text = ''
-      #!/bin/sh
-      set -e
-      xset s off dpms 0 10 0
-      i3lock --color=4c7899 --ignore-empty-password --show-failed-attempts --nofork
-      xset s off -dpms
-    '';
   };
 
   home.pointerCursor =
