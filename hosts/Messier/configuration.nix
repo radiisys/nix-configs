@@ -146,6 +146,7 @@
 
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
+    polybar
     xss-lock
     nitrogen
     virt-manager
