@@ -132,10 +132,10 @@
         enableNvidiaPatches = true;
     };
     steam.enable = true;
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-    };
+    #sway = {
+      #enable = true;
+      #wrapperFeatures.gtk = true;
+    #};
     nm-applet.enable = true;
     adb.enable = true;
     dconf.enable = true;
@@ -144,12 +144,6 @@
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
     nitrogen
-    xdg-utils
-    dracula-theme
-    gnome3.adwaita-icon-theme
-    bemenu
-    wdisplays
-    glib
     virt-manager
     wvkbd
     solaar
@@ -180,6 +174,7 @@
   environment.sessionVariables = {
     GDK_DPI_SCALE = "0.5";
     GDK_SCALE = "2";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
   };
 
   environment.variables = {
