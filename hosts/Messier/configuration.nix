@@ -171,7 +171,6 @@
     logitech-udev-rules
     nitrogen
     dbus-sway-environment
-    configure-gtk
     xdg-utils
     dracula-theme
     gnome3.adwaita-icon-theme
