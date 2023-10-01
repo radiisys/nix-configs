@@ -162,8 +162,10 @@
   environment.sessionVariables = {
     GDK_DPI_SCALE = "0.5";
     GDK_SCALE = "2";
-    XCURSOR_SIZE = "32";
-    #QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+  };
+
+  environment.variables = {
+    XCURSOR_SIZE = "64";
   };
 
   xdg.portal = {
