@@ -36,6 +36,11 @@
   };
 
   services.xserver = {
+    enable = true;
+    dpi = 180;
+    displayManager.lightdm.enable = true;
+    layout = "us";
+    xkbVariant = "colemak";  
     videoDrivers = lib.mkForce [ "nvidia" ];
     desktopManager = {
       xterm.enable = false;
@@ -134,6 +139,7 @@
 
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
+    nitrogen
     virt-manager
     wvkbd
     solaar
@@ -205,17 +211,6 @@
     LC_PAPER = "en_GB.UTF-8";
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
-  };
-
-  # Enable X11 Windowing system
-  services.xserver.enable = true;
-  # Enable display Manager
-  #services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-  # configure keymap (x11)
-  services.xserver = {
-    layout = "gb";
-    xkbVariant = "colemak";
   };
 
   nix.gc = {
