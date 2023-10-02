@@ -62,6 +62,11 @@
     systemdIntegration = true;
     settings = import ./hyprland.nix;
   };
+  
+  wayland.windowManager.sway = {
+    extraOptions = [ "--unsupported-gpu" ];
+  };
+  
   # let HM manage itself when in standalone mode
   programs.home-manager.enable = true;
 

@@ -194,10 +194,12 @@
   environment.sessionVariables = {
     GDK_DPI_SCALE = "0.5";
     GDK_SCALE = "2";
+    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   environment.variables = {
     XCURSOR_SIZE = "64";
+    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   xdg.portal = {
