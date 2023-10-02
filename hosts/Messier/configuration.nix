@@ -138,20 +138,14 @@
     sway = {
       enable = true;
       wrapperFeatures.gtk = true;
-      extraSessionCommands = ''
-      export SDL_VIDEODRIVER=wayland
-      export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-      export _JAVA_AWT_WM_NONREPARENTING=1
-      export MOZ_ENABLE_WAYLAND=1
-      '';
+      extraOptions = [
+        "--unsupported-gpu"
+      ];
     };
     nm-applet.enable = true;
     adb.enable = true;
     dconf.enable = true;
   };
-
-  qt.platformTheme = "qt5ct";
 
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
