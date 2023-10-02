@@ -135,24 +135,36 @@
         #enableNvidiaPatches = true;
     #};
     steam.enable = true;
-    #sway = {
-      #enable = true;
-      #wrapperFeatures.gtk = true;
-    #};
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+      extraSessionCommands = ''
+      export SDL_VIDEODRIVER=wayland
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export MOZ_ENABLE_WAYLAND=1
+      '';
+    };
     nm-applet.enable = true;
+    qt5ct.enable = true;
     adb.enable = true;
     dconf.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
-    #wayland
-    #xdg-utils
-    #glib
-    #dracula-theme
-    #gnome3.adwaita-icon-theme
-    #bemenu
-    #wdisplays
+    gtk-engine-murrine
+    gtk_engines
+    gsettings-desktop-schemas
+    lxappearance
+    wayland
+    xdg-utils
+    glib
+    dracula-theme
+    gnome3.adwaita-icon-theme
+    bemenu
+    wdisplays
     polybar
     xss-lock
     nitrogen
