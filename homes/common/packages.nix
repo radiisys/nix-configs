@@ -8,7 +8,7 @@
     foot
     alacritty
     wofi
-    tetrio-desktop
+    #tetrio-desktop
     hyprpaper
     networkmanagerapplet
     swaylock
