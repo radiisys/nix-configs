@@ -130,11 +130,11 @@
 
   # the configuration (pain)
   programs = {
-    #hyprland = {
-	#enable = true;
-	#xwayland.enable = true;
-        #enableNvidiaPatches = true;
-    #};
+    hyprland = {
+	enable = true;
+	xwayland.enable = true;
+        enableNvidiaPatches = true;
+    };
     steam.enable = true;
     sway = {
       enable = true;
