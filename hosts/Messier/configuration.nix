@@ -84,6 +84,7 @@
        environment.sessionVariables = {
 	 GDK_SCALE = lib.mkForce "1";
          GDK_DPI_SCALE = lib.mkForce "1";
+         WLR_NO_HARDWARE_CURSORS = "1"
        };
        environment.variables = {
 	 XCURSOR_SIZE = lib.mkForce "24";
