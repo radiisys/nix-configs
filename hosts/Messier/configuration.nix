@@ -147,10 +147,11 @@
       '';
     };
     nm-applet.enable = true;
-    qt5ct.enable = true;
     adb.enable = true;
     dconf.enable = true;
   };
+
+  qt5.platformTheme = "qt5ct";
 
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
