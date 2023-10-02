@@ -155,6 +155,7 @@
     gsettings-desktop-schemas
     lxappearance
     wayland
+    wmenu
     xdg-utils
     glib
     dracula-theme
