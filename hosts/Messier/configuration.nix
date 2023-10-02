@@ -187,7 +187,6 @@
     swaynotificationcenter
     polkit_gnome
     jetbrains-mono
-    xdg-desktop-portal-hyprland
     udiskie
     cinnamon.nemo
     libsForQt5.ark
@@ -208,7 +207,7 @@
   xdg.portal = {
       enable = true;
       wlr.enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
   };
 
   security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
