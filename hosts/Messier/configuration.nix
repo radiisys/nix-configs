@@ -38,7 +38,8 @@
   services.xserver = {
     enable = true;
     dpi = 200;
-    displayManager.lightdm.enable = true;
+    displayManager.gdm.enable = true;
+    displayManager.gdm.wayland = true;
     desktopManager = {
       xterm.enable = false;
     };
