@@ -39,6 +39,7 @@
     enable = true;
     dpi = 200;
     displayManager.lightdm.enable = true;
+    displayManager.lightdm.greeter.enable = true;
     desktopManager = {
       xterm.enable = false;
     };
