@@ -129,16 +129,16 @@
 
   # the configuration (pain)
   programs = {
-    hyprland = {
-	enable = true;
-	xwayland.enable = true;
-        enableNvidiaPatches = true;
-    };
-    steam.enable = true;
-    #sway = {
-      #enable = true;
-      #wrapperFeatures.gtk = true;
+    #hyprland = {
+	#enable = true;
+	#xwayland.enable = true;
+        #enableNvidiaPatches = true;
     #};
+    steam.enable = true;
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+    };
     nm-applet.enable = true;
     adb.enable = true;
     dconf.enable = true;
@@ -146,6 +146,13 @@
 
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
+    wayland
+    xdg-utils
+    glib
+    dracula-theme
+    gnome3.adwaita-icon-theme
+    bemenu
+    wdisplays
     polybar
     xss-lock
     nitrogen
@@ -187,6 +194,8 @@
 
   xdg.portal = {
       enable = true;
+      wlr.enable - true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
