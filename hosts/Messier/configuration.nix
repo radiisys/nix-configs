@@ -151,7 +151,7 @@
     dconf.enable = true;
   };
 
-  qt5.platformTheme = "qt5ct";
+  qt.platformTheme = "qt5ct";
 
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
