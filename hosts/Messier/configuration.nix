@@ -135,10 +135,10 @@
         #enableNvidiaPatches = true;
     #};
     steam.enable = true;
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-    };
+    #sway = {
+      #enable = true;
+      #wrapperFeatures.gtk = true;
+    #};
     nm-applet.enable = true;
     adb.enable = true;
     dconf.enable = true;
@@ -146,13 +146,13 @@
 
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
-    wayland
-    xdg-utils
-    glib
-    dracula-theme
-    gnome3.adwaita-icon-theme
-    bemenu
-    wdisplays
+    #wayland
+    #xdg-utils
+    #glib
+    #dracula-theme
+    #gnome3.adwaita-icon-theme
+    #bemenu
+    #wdisplays
     polybar
     xss-lock
     nitrogen
