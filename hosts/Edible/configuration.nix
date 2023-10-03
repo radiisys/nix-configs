@@ -24,6 +24,28 @@
     ./hardware-configuration.nix
   ];
 
+  services.xserver = {
+    enable = true;
+    dpi = 200;
+    displayManager.lightdm.enable = true;
+    desktopManager = {
+      xterm.enable = false;
+    };
+    layout = "us";
+    windowManager.i3 = {
+      enable = true;
+      package = pkgs.i3-gaps;
+      extraPackages = with pkgs; [
+        dmenu
+        i3status
+        i3lock
+        i3blocks
+      ];
+    };
+  };
+
+  environment.pathsToLink = [ "/libexec" ];
+
   nixpkgs = {
     # Configure your nixpkgs instance
     config = {
@@ -51,10 +73,6 @@
 
   # the configuration (pain)
   programs = {
-    hyprland = {
-	enable = true;
-	xwayland.enable = true;
-    };
     steam.enable = true;
     nm-applet.enable = true;
     adb.enable = true;
@@ -63,10 +81,14 @@
 
   environment.systemPackages = with pkgs; [
     virt-manager
+    pulseaudio
     solaar
     logitech-udev-rules
-    swayidle
-    gtklock
+    maim
+    xclip
+    xdotool
+    dunst
+    xss-lock
     (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
     temurin-jre-bin-8
     temurin-bin-18
@@ -74,20 +96,20 @@
     blueman
     bluez
     bluez-alsa
-    swaynotificationcenter
     polkit_gnome
     jetbrains-mono
-    xdg-desktop-portal-hyprland
     udiskie
     cinnamon.nemo
   ];
   
-  xdg.portal = {
-      enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+  environment.sessionVariables = {
+    GDK_DPI_SCALE = "0.5";
+    GDK_SCALE = "2";
   };
 
-  security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
+  environment.variables = {
+    XCURSOR_SIZE = "64";
+  };
 
   fonts.packages = with pkgs; [
 	font-awesome
@@ -109,8 +131,12 @@
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   
+  services.dbus.enable = true;
+
   # enable networking
   networking.networkmanager.enable = true;
+
+  services.dbus.enable = true;
 
   # Set a time zone, idiot
   time.timeZone = "Australia/Perth";
@@ -135,16 +161,10 @@
     LC_TIME = "en_AU.UTF-8";
   };
 
-  # Enable X11 Windowing system
-  services.xserver.enable = true;
-  # Enable display Manager
-  #services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = true;
-  # configure keymap (x11)
-  services.xserver = {
-    layout = "au";
-    xkbVariant = "qwerty";
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
   };
 
   # udisks
@@ -167,9 +187,9 @@
  systemd = {
   user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "hyprland-session.target" ];
-    wants = [ "hyprland-session.target" ];
-    after = [ "hyprland-session.target" ];
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";

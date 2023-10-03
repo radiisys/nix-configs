@@ -24,6 +24,28 @@
     ./hardware-configuration.nix
   ];
 
+  services.xserver = {
+    enable = true;
+    displayManager.lightdm.enable = true;
+    desktopManager = {
+      xterm.enable = false;
+    };
+    layout = "us";
+    xkbVariant = "colemak";
+    windowManager.i3 = {
+      enable = true;
+      package = pkgs.i3-gaps;
+      extraPackages = with pkgs; [
+        dmenu
+        i3status
+        i3lock
+        i3blocks
+      ];
+    };
+  };
+
+  environment.pathsTolink = [ "/libexec" ];
+
   nixpkgs = {
     # Configure your nixpkgs instance
     config = {
@@ -51,10 +73,6 @@
 
   # pain from here on out
   programs = {
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
     steam.enable = true;
     nm-applet.enable = true;
     adb.enable = true;
@@ -65,34 +83,27 @@
     virt-manager
     solaar
     logitech-udev-rules
-    swayidle
-    gtklock
+    xss-lock
+    pulseaudio
+    nitrogen
+    maim
+    xclip
+    xdotool
+    dunst
     (pkgs.discord-canary.override {
 	withVencord = true;
-    })
+    };
     (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
     temurin-jre-bin-8
     temurin-bin-18
     libinput
     font-awesome
-    swaynotificationcenter
     polkit_gnome
     jetbrains-mono
-    libsForQt5.qt5ct
-    xdg-desktop-portal-hyprland
-    adwaita-qt
-    adwaita-qt6
     cinnamon.nemo
     udiskie
     libsForQt5.ark
   ];
-  
-  xdg.portal = {
-      enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
-  };
-
-  security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
   
   fonts.packages = with pkgs; [
 	font-awesome
@@ -101,6 +112,8 @@
 
   # TODO: Set your hostname
   networking.hostName = "Nebula";
+
+  services.dbus.enable = true;
 
   virtualisation.libvirtd = {
 	enable = true;
@@ -141,20 +154,15 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
-  # Enable X11 Windowing system
-  services.xserver.enable = true;
-  # Enable display Manager
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = true;
-
-  # configure keymap (x11)
-  services.xserver = {
-    layout = "gb";
-    xkbVariant = "colemak";
+  nix.gc = {
+    automatic = true;
+    dates = "weekly;
+    options = "--delete-older-than 30d";
   };
 
   # udisks
   services.udisks2.enable = true;
+  
   # Would you like to be able to fucking print?
   services.printing.enable = true;
 
@@ -177,9 +185,9 @@
  systemd = {
   user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "hyprland-session.target" ];
-    wants = [ "hyprland-session.target" ];
-    after = [ "hyprland-session.target" ];
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";

@@ -24,24 +24,9 @@
   home = {
     username = "radisys";
     homeDirectory = "/home/radisys";
-    file.".config/hypr/hyprpaper.conf".text = ''
-      preload = ~/.config/nixos/wallpapers/wallpaper1.jpg
-      wallpaper = DVI-D-1,~/.config/nixos/wallpapers/wallpaper1.jpg
-      wallpaper = DP-4,~/.config/nixos/wallpapers/wallpaper1.jpg
-      wallpaper = HDMI-A-2,~/.config/nixos/wallpapers/wallpaper1.jpg
-    '';
-    file.".config/lockonsleep/config.sh".text = ''
-      exec swayidle -w \
-        timeout 240 'gtklock -d -b ~/.config/nixos/wallpapers/wallpaper1.jpg' \
-        before-sleep 'gtklock -d -b ~/.config/nixos/wallpapers/wallpaper1.jpg'
-    '';
+    file.".config/i3/config".source = ./config;
   };
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemdIntegration = true;
-    settings = import ./hyprland.nix;
-  };
   # let HM manage itself when in standalone mode
   programs.home-manager.enable = true;
 

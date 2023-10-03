@@ -24,22 +24,9 @@
   home = {
     username = "maya";
     homeDirectory = "/home/maya";
-    file.".config/hypr/hyprpaper.conf".text = ''
-      preload = ~/.config/nixos/wallpapers/sl.jpg
-      wallpaper = eDP-1,~/.config/nixos/wallpapers/sl.jpg
-    '';
-    file.".config/lockonsleep/config.sh".text = ''
-      exec swayidle -w \
-        timeout 300 'gtklock -d -b ~/.config/nixos/wallpapers/sl.jpg' \
-        before-sleep 'gtklock -d -b ~/.config/nixos/wallpapers/sl.jpg'
-    '';
+    file.".config/i3/config".source = ./config;
   };
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemdIntegration = true;
-    settings = import ./hyprland.nix;
-  };
   # let HM manage itself when in standalone mode
   programs.home-manager.enable = true;
 

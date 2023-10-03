@@ -33,7 +33,7 @@
   services.xserver = {
     enable = true;
     dpi = 200;
-    displayManager.sddm.enable = true;
+    displayManager.lightdm.enable = true;
     desktopManager = {
       xterm.enable = false;
     };
@@ -42,6 +42,7 @@
     videoDrivers = lib.mkForce [ "nvidia" ];
     windowManager.i3 = {
       enable = true;
+      package = pkgs.i3-gaps;
       extraPackages = with pkgs; [
         dmenu
         i3status
@@ -132,6 +133,7 @@
 
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
+    pulseaudio
     xss-lock
     nitrogen
     virt-manager
@@ -211,12 +213,13 @@
 
   nix.gc = {
     automatic = true;
-    dates = "daily";
+    dates = "weekly";
     options = "--delete-older-than 30d";
   };
 
   # udisks
   services.udisks2.enable = true;
+  
   # Would you like to be able to fucking print?
   services.printing.enable = true;
 

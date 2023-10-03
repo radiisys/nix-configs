@@ -16,15 +16,9 @@
 	inputs.nixpkgs.follows = "nixpkgs";
     };
 	
-    # hyprland 
-    hyprland.url = "github:hyprwm/Hyprland";
-
     # nixos-hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     
-    # nixpkgs wayland
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-    nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -92,8 +86,6 @@
         modules = [
           # > Our main home-manager configuration file <
           ./homes/Dysnomia
-          hyprland.homeManagerModules.default
-          {wayland.windowManager.hyprland.enable = true;}
         ];
       };
 
@@ -103,8 +95,6 @@
         modules = [
           # > Our main home-manager configuration file <
           ./homes/Cygnus
-          hyprland.homeManagerModules.default
-          {wayland.windowManager.hyprland.enable = true;}
         ];
       };
 
@@ -114,8 +104,6 @@
         modules = [
           # > Our main home-manager configuration file <
           ./homes/Nebula
-          hyprland.homeManagerModules.default
-          {wayland.windowManager.hyprland.enable = true;}
         ];
       };
 
@@ -125,8 +113,6 @@
         modules = [
           # > Our main home-manager configuration file <
           ./homes/Edible
-          hyprland.homeManagerModules.default
-          {wayland.windowManager.hyprland.enable = true;}
         ];
       };
        "radisys@Pluto" = home-manager.lib.homeManagerConfiguration {
@@ -135,8 +121,6 @@
         modules = [
           # > Our main home-manager configuration file <
           ./homes/Pluto
-          hyprland.homeManagerModules.default
-          {wayland.windowManager.hyprland.enable = true;}
         ];
       };
       
