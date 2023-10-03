@@ -16,12 +16,17 @@
 	inputs.nixpkgs.follows = "nixpkgs";
     };
 	
+    # hyprland 
+    hyprland.url = "github:hyprwm/Hyprland";
+
     # nixos-hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    
+    # nixpkgs wayland
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
+  };
 
-    # hyprland
-    hyprland.url = "github:hyprwm/Hyprland";
-  
   outputs = {
     self,
     nixpkgs,
