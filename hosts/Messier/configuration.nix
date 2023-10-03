@@ -28,11 +28,6 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      vaapiVdpau
-      libvdpau-va-gl
-      nvidia-vaapi-driver
-    ];
   };
 
   services.xserver = {
@@ -62,7 +57,7 @@
     powerManagement.enable = true;
     powerManagement.finegrained = true;
     open = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
     nvidiaSettings = true;
     modesetting.enable = true;
     forceFullCompositionPipeline = true;
@@ -130,19 +125,19 @@
 
   # the configuration (pain)
   programs = {
-    hyprland = {
-	enable = true;
-	xwayland.enable = true;
-        enableNvidiaPatches = true;
-    };
+    #hyprland = {
+	#enable = true;
+	#xwayland.enable = true;
+        #enableNvidiaPatches = true;
+    #};
     steam.enable = true;
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-      extraOptions = [
-        "--unsupported-gpu"
-      ];
-    };
+    #sway = {
+      #enable = true;
+      #wrapperFeatures.gtk = true;
+      #extraOptions = [
+        #"--unsupported-gpu"
+      #];
+    #};
     nm-applet.enable = true;
     adb.enable = true;
     dconf.enable = true;
@@ -150,12 +145,7 @@
 
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
-    gtk-engine-murrine
-    gtk_engines
-    gsettings-desktop-schemas
-    lxappearance
-    wayland
-    wmenu
+    #wmenu
     xdg-utils
     glib
     dracula-theme
@@ -187,25 +177,23 @@
     cinnamon.nemo
     libsForQt5.ark
     lshw
-    nvidia-vaapi-driver
-    egl-wayland
   ];
 
   environment.sessionVariables = {
     GDK_DPI_SCALE = "0.5";
     GDK_SCALE = "2";
-    WLR_NO_HARDWARE_CURSORS = "1";
+    #WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   environment.variables = {
     XCURSOR_SIZE = "64";
-    WLR_NO_HARDWARE_CURSORS = "1";
+    #WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   xdg.portal = {
-      enable = true;
-      #wlr.enable = true;
-      #extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
+      enable = false;
+      wlr.enable = false;
+      #extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";

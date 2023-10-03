@@ -57,15 +57,15 @@
         "sha256-BvVE9qupMjw7JRqFUj1J0a4ys6kc9fOLBPx2bGaapTk="
         "Fuchsia-Pop";
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemdIntegration = true;
-    settings = import ./hyprland.nix;
-  };
+  #wayland.windowManager.hyprland = {
+    #enable = true;
+    #systemdIntegration = true;
+    #settings = import ./hyprland.nix;
+  #};
   
-  wayland.windowManager.sway = {
-    extraOptions = [ "--unsupported-gpu" ];
-  };
+  #wayland.windowManager.sway = {
+    #extraOptions = [ "--unsupported-gpu" ];
+  #};
   
   # let HM manage itself when in standalone mode
   programs.home-manager.enable = true;
