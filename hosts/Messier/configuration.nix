@@ -112,8 +112,6 @@
   nixpkgs = {
     # Configure your nixpkgs instance
     config = {
-      packageOverrides = pkgs: {
-        vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
       # Disable if you don't want unfree packages
       allowUnfree = true;
     };
