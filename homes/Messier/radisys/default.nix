@@ -24,7 +24,7 @@
   home = {
     username = "radisys";
     homeDirectory = "/home/radisys";
-    file.".config/i3/config".text = import ./config
+    file.".config/i3/config".text = import ./config;
   };
 
   home.pointerCursor =
