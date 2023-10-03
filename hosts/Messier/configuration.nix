@@ -171,6 +171,7 @@
     bluez
     bluez-alsa
     swaynotificationcenter
+    dunst
     polkit_gnome
     jetbrains-mono
     udiskie
