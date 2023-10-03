@@ -13,11 +13,6 @@ _: {
         };
     };
     neovim.enable = true;
-    #waybar = {
-      #enable = true;
-      #settings = import ./waybar.nix;
-      #style = import ./waybar-style.nix;
-    #};
     # ... add more programs as you see fit
   };
 }

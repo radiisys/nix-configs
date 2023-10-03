@@ -25,7 +25,6 @@
     self,
     nixpkgs,
     home-manager,
-    hyprland,
     nixos-hardware,
     ...
   } @ inputs: let
