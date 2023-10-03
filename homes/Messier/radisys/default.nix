@@ -24,15 +24,7 @@
   home = {
     username = "radisys";
     homeDirectory = "/home/radisys";
-    file.".config/hypr/hyprpaper.conf".text = ''
-      preload = ~/.config/nixos/wallpapers/wallpaper1.png
-      wallpaper = eDP-1,~/.config/nixos/wallpapers/wallpaper1.png
-    '';
-    file.".config/lockonsleep/config.sh".text = ''
-      exec swayidle -w \
-        timeout 240 'gtklock -d -b ~/.config/nixos/wallpapers/wallpaper1.png' \
-        before-sleep 'gtklock -d -b ~/.config/nixos/wallpapers/wallpaper1.png'
-    '';
+    file.".config/i3/config".text = import ./config
   };
 
   home.pointerCursor =
@@ -56,16 +48,6 @@
         "https://github.com/ful1e5/fuchsia-cursor/releases/download/v2.0.0/Fuchsia-Pop.tar.gz"
         "sha256-BvVE9qupMjw7JRqFUj1J0a4ys6kc9fOLBPx2bGaapTk="
         "Fuchsia-Pop";
-
-  #wayland.windowManager.hyprland = {
-    #enable = true;
-    #systemdIntegration = true;
-    #settings = import ./hyprland.nix;
-  #};
-  
-  #wayland.windowManager.sway = {
-    #extraOptions = [ "--unsupported-gpu" ];
-  #};
   
   # let HM manage itself when in standalone mode
   programs.home-manager.enable = true;

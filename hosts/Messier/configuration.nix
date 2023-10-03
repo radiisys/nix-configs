@@ -79,7 +79,6 @@
        environment.sessionVariables = {
 	 GDK_SCALE = lib.mkForce "1";
          GDK_DPI_SCALE = lib.mkForce "1";
-         WLR_NO_HARDWARE_CURSORS = "1";
        };
        environment.variables = {
 	 XCURSOR_SIZE = lib.mkForce "24";
@@ -125,19 +124,7 @@
 
   # the configuration (pain)
   programs = {
-    #hyprland = {
-	#enable = true;
-	#xwayland.enable = true;
-        #enableNvidiaPatches = true;
-    #};
     steam.enable = true;
-    #sway = {
-      #enable = true;
-      #wrapperFeatures.gtk = true;
-      #extraOptions = [
-        #"--unsupported-gpu"
-      #];
-    #};
     nm-applet.enable = true;
     adb.enable = true;
     dconf.enable = true;
@@ -145,21 +132,10 @@
 
   environment.systemPackages = with pkgs; [
     logitech-udev-rules
-    #wmenu
-    xdg-utils
-    glib
-    dracula-theme
-    gnome3.adwaita-icon-theme
-    bemenu
-    wdisplays
-    polybar
     xss-lock
     nitrogen
     virt-manager
-    wvkbd
     solaar
-    swayidle
-    gtklock
     maim
     xclip
     xdotool
@@ -170,7 +146,6 @@
     blueman
     bluez
     bluez-alsa
-    swaynotificationcenter
     dunst
     polkit_gnome
     jetbrains-mono
@@ -183,21 +158,11 @@
   environment.sessionVariables = {
     GDK_DPI_SCALE = "0.5";
     GDK_SCALE = "2";
-    #WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   environment.variables = {
     XCURSOR_SIZE = "64";
-    #WLR_NO_HARDWARE_CURSORS = "1";
   };
-
-  xdg.portal = {
-      enable = false;
-      wlr.enable = false;
-      #extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
-
-  security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
 
   fonts.packages = with pkgs; [
 	font-awesome
@@ -207,6 +172,7 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.fwupd.enable = true;
+
   # TODO: Set your hostname
   networking.hostName = "Messier";
 
@@ -218,8 +184,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ "acpi_rev_override" "intel_iommu=igfx_off" "nvidia_drm.modeset=1" "ibt=off" ]; # if we ever stop using internal panel, blacklist i915
-  boot.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  boot.kernelModules = [ "nvidia" "nvidia_drm" ];
 
   # enable networking
   networking.networkmanager.enable = true;
@@ -269,9 +234,9 @@
  systemd = {
   user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "hyprland-session.target" ];
-    wants = [ "hyprland-session.target" ];
-    after = [ "hyprland-session.target" ];
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
