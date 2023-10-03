@@ -40,6 +40,10 @@
     layout = "us";
     xkbVariant = "colemak";  
     videoDrivers = lib.mkForce [ "nvidia" ];
+    deviceSection = ''
+      Option "DRI" "2"
+      Option "TearFree" "true"
+    '';
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
