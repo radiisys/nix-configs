@@ -3,6 +3,7 @@
     obs-studio
     rnote
     rofi
+    polybar
     drawing
     signal-desktop
     scrcpy
