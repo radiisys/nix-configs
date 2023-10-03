@@ -47,9 +47,25 @@
     layout = "us";
     xkbVariant = "colemak";  
     videoDrivers = lib.mkForce [ "nvidia" ];
-    deviceSection = ''
-      Option "DRI" "2"
-      Option "TearFree" "true"
+    config = ''
+      Section "Device"
+          Identifier  "Intel Graphics"
+          Driver      "intel"
+          Option      "TearFree"       "true"
+          Option      "SwapbuffersWait" "true"
+          BusID       "PCI:0:2:0"
+      EndSection
+      Section "Device"
+          Identifier  "nvidia"
+          Driver      "nvidia"
+          BusID       "PCI:1:0:0"
+          Option      "AllowEmptyInitialConfiguration"
+      EndSection
+    '';
+    screenSection = ''
+      Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On};
+      Option         "AllowIndirectGLXProtocol" "off"
+      Option         "TripleBuffer "on"
     '';
     windowManager.i3 = {
       enable = true;
