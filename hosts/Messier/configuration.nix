@@ -28,6 +28,13 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+      nvidia-vaapi-driver
+    ];
   };
 
   services.xserver = {
@@ -105,6 +112,8 @@
   nixpkgs = {
     # Configure your nixpkgs instance
     config = {
+      packageOverrides = pkgs: {
+        vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
       # Disable if you don't want unfree packages
       allowUnfree = true;
     };
@@ -136,6 +145,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    nvidia-vaapi-driver
     logitech-udev-rules
     pulseaudio
     xss-lock
