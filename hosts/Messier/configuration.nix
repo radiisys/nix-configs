@@ -60,12 +60,8 @@
           Driver      "nvidia"
           BusID       "PCI:1:0:0"
           Option      "AllowEmptyInitialConfiguration"
+          Option      "TearFree"       "true"
       EndSection
-    '';
-    screenSection = ''
-      Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On};
-      Option         "AllowIndirectGLXProtocol" "off"
-      Option         "TripleBuffer "on"
     '';
     windowManager.i3 = {
       enable = true;
@@ -94,10 +90,11 @@
   hardware.nvidia.prime = {
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";
-    offload = {
-      enable = true;
-      enableOffloadCmd = true;
-    };
+    sync.enable = true;
+    #offload = {
+      #enable = true;
+      #enableOffloadCmd = true;
+    #};
   };
 
   specialisation = {
@@ -205,6 +202,7 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.fwupd.enable = true;
+  services.picom.enable = true;
 
   # TODO: Set your hostname
   networking.hostName = "Messier";

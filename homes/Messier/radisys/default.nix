@@ -25,7 +25,8 @@
     username = "radisys";
     homeDirectory = "/home/radisys";
     file.".config/i3/config".source = ./config;
-    file.".config/i3status/config".source = ./i3status.conf; 
+    file.".config/i3status/config".source = ./i3status.conf;
+    file.".config/picom/picom.conf".source = ./picom.conf; 
   };
 
   home.pointerCursor =
