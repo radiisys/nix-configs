@@ -160,6 +160,7 @@
 
   environment.systemPackages = with pkgs; [
     nvidia-vaapi-driver
+    picom
     logitech-udev-rules
     pulseaudio
     xss-lock
@@ -202,7 +203,6 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.fwupd.enable = true;
-  packages.picom.enable = true;
 
   # TODO: Set your hostname
   networking.hostName = "Messier";
