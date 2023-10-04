@@ -78,8 +78,8 @@
   environment.pathsToLink = [ "/libexec" ];
 
   hardware.nvidia = {
-    powerManagement.enable = true;
-    powerManagement.finegrained = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
     open = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     nvidiaSettings = true;
@@ -90,7 +90,6 @@
   hardware.nvidia.prime = {
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";
-    #sync.enable = true;
     offload = {
       enable = true;
       enableOffloadCmd = true;
@@ -113,8 +112,6 @@
          lidSwitch = "ignore";
        };
        hardware.nvidia = {
-         powerManagement.enable = lib.mkForce false;
-         powerManagement.finegrained = lib.mkForce false;
          prime.offload.enable = lib.mkForce false;
          prime.offload.enableOffloadCmd = lib.mkForce false;
          prime.sync.enable = lib.mkForce true;
