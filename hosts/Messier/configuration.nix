@@ -78,8 +78,8 @@
   environment.pathsToLink = [ "/libexec" ];
 
   hardware.nvidia = {
-    powerManagement.enable = true;
-    powerManagement.finegrained = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
     open = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     nvidiaSettings = true;
