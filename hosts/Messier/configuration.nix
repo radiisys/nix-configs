@@ -202,10 +202,7 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.fwupd.enable = true;
-  services.picom = {
-    enable = true;
-    settings = builtins.readFile ./picom.conf;
-  };
+  packages.picom.enable = true;
 
   # TODO: Set your hostname
   networking.hostName = "Messier";
