@@ -36,8 +36,8 @@ exec --no-startup-id polybar
 exec_always --no-startup-id blueman-applet
 
 # xrandr stuff for our second display
-#exec_always --no-startup-id xrandr --output DP-1-4 --auto --left-of eDP-1
-#exec_always --no-startup-id xrandr --output HDMI-1-0 --auto --right-of eDP-1
+#exec_always --no-startup-id xrandr --output DP-1-4 --auto --scale 1x1 --left-of eDP-1
+#exec_always --no-startup-id xrandr --output HDMI-1-0 --auto --scale 1x1 --right-of eDP-1
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
