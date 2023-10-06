@@ -23,9 +23,6 @@ font pango:monospace 8
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
-# nitrogen
-exec_always --no-startup-id nitrogen --restore &
-
 # picom
 exec_always --no-startup-id "picom --config ~/.config/nixos/picom.conf"
 
@@ -37,6 +34,9 @@ exec_always --no-startup-id blueman-applet
 
 # xrandr stuff for our second display
 exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --mode 1920x1080 --left-of eDP-1
+
+# nitrogen
+exec_always --no-startup-id nitrogen --restore &
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
