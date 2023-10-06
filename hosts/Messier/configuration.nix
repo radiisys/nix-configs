@@ -40,7 +40,7 @@
   services.xserver = {
     enable = true;
     displayManager = {
-      lightdm.enable = true;
+      sddm.enable = true;
       setupCommands = "xrandr --output eDP-1 --mode 1920x1080";
     }; 
     desktopManager = {
