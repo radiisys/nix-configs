@@ -36,7 +36,7 @@ exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --mode 1920x1080 --left-of eDP-1
 
 # xrandr for when secondary panels are not connected
-exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080
+exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --scale 0.5x0.5
 
 # nitrogen
 exec_always --no-startup-id nitrogen --restore &
