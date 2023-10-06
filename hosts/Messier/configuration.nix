@@ -157,6 +157,7 @@
 
   environment.systemPackages = with pkgs; [
     nvidia-vaapi-driver
+    onboard
     picom
     logitech-udev-rules
     pulseaudio
