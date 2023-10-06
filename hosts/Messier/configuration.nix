@@ -42,6 +42,7 @@
     displayManager = {
       lightdm.enable = true;
       setupCommands = "xrandr --output eDP-1 --mode 1920x1080";
+    }; 
     desktopManager = {
       xterm.enable = false;
     };
