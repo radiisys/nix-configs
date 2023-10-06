@@ -184,14 +184,14 @@
     lshw
   ];
 
-  #environment.sessionVariables = {
+  environment.sessionVariables = {
     #GDK_DPI_SCALE = "0.5";
-    #GDK_SCALE = "2";
-  #};
+    GDK_SCALE = "2";
+  };
 
-  #environment.variables = {
-    #XCURSOR_SIZE = "64";
-  #};
+  environment.variables = {
+    XCURSOR_SIZE = "64";
+  };
 
   fonts.packages = with pkgs; [
 	font-awesome
