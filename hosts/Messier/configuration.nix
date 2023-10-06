@@ -163,6 +163,7 @@
     xclip
     xdotool
     (pkgs.python3.withPackages(ps: with ps; [ tkinter ]))
+    python311Packages.dbus-python
     temurin-jre-bin-8
     temurin-bin-18
     font-awesome
