@@ -39,8 +39,9 @@
 
   services.xserver = {
     enable = true;
-    dpi = 200;
-    displayManager.lightdm.enable = true;
+    displayManager = {
+      lightdm.enable = true;
+      setupCommands = "xrandr --output eDP-1 --mode 1920x1080";
     desktopManager = {
       xterm.enable = false;
     };
@@ -100,14 +101,6 @@
     clamshell.configuration = {
        system.nixos.tags = [ "clamshell" ];
        boot.kernelParams = [ "module_blacklist=i915" ];
-       environment.sessionVariables = {
-	 GDK_SCALE = lib.mkForce "1";
-         GDK_DPI_SCALE = lib.mkForce "1";
-       };
-       environment.variables = {
-	 XCURSOR_SIZE = lib.mkForce "24";
-       };
-       services.xserver.dpi = lib.mkForce 100;
        services.logind = {
          lidSwitch = "ignore";
        };
@@ -183,15 +176,6 @@
     libsForQt5.ark
     lshw
   ];
-
-  environment.sessionVariables = {
-    #GDK_DPI_SCALE = "0.5";
-    GDK_SCALE = "2";
-  };
-
-  environment.variables = {
-    XCURSOR_SIZE = "64";
-  };
 
   fonts.packages = with pkgs; [
 	font-awesome
