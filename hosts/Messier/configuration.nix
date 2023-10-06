@@ -40,8 +40,8 @@
   services.xserver = {
     enable = true;
     displayManager = {
-      sddm.enable = true;
-      setupCommands = "xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --mode 1920x1080";
+      gdm.enable = true;
+      setupCommands = "xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --mode 1920x1080 --left-of eDP-1";
     }; 
     desktopManager = {
       xterm.enable = false;
