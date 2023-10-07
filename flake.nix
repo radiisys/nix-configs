@@ -17,7 +17,7 @@
     };
 
     # hyprland
-    #hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland";
 	
     # nixos-hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -28,7 +28,7 @@
     self,
     nixpkgs,
     home-manager,
-    #hyprland,
+    hyprland,
     nixos-hardware,
     ...
   } @ inputs: let
@@ -80,8 +80,8 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
-          #hyprland.homeManagerModules.default
-          #{wayland.windowManager.hyprland.enable = true;}
+          hyprland.homeManagerModules.default
+          {wayland.windowManager.hyprland.enable = true;}
           ./homes/Messier
         ];
       };
