@@ -40,6 +40,7 @@
   services.xserver = {
     enable = true;
     displayManager.startx.enable = true;
+    #displayManager.lightdm.enable = true;
     desktopManager = {
       xterm.enable = false;
     };
@@ -204,7 +205,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd startx";
+         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd startx";
       };
     };
   };
