@@ -5,6 +5,7 @@
     ripcord
     rnote
     rofi
+    wofi
     polybar
     drawing
     signal-desktop

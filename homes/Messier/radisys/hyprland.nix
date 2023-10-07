@@ -98,7 +98,7 @@
     ];
     bind = [
       # basic binds
-      "$mod, Q, exec, foot"
+      "$mod, Q, exec, alacritty"
       "$mod, C, killactive, "
       "$mod, M, exit, "
       "$mod, V, togglefloating, "
