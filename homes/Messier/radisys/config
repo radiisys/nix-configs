@@ -36,7 +36,7 @@ exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --mode 1280x1024 --left-of eDP-1
 
 # xrandr stuff for secondary panels (no igpu)
-exec_always --no-startup-id xrandr --output DP-4 --mode 1280x1024 --output HDMI-A-1 --mode 1920x1080 --right-of-DP-3
+exec_always --no-startup-id xrandr --output DP-4 --mode 1280x1024 --output HDMI-0 --mode 1920x1080 --right-of-DP-4
 
 # xrandr for when secondary panels are not connected
 exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080
