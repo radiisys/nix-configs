@@ -155,7 +155,7 @@
 
   environment.systemPackages = with pkgs; [
     nvidia-vaapi-driver
-    greetd
+    gtkgreet
     libva
     libsForQt5.qt5ct
     onboard
