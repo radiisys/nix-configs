@@ -151,11 +151,11 @@
     nm-applet.enable = true;
     adb.enable = true;
     dconf.enable = true;
-    regreet.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
     nvidia-vaapi-driver
+    greetd
     libva
     libsForQt5.qt5ct
     onboard
