@@ -28,7 +28,15 @@
     firefox-devedition
     stellarium
     beeper
-    vscodium
+    (writeShellApplication {
+       name = "vscodium";
+       text = "${pkgs.vscodium}/bin/codium --use-gl=desktop";
+    })
+    (makeDesktopItem {
+       name = "vscodium";
+       exec = "vscodium";
+       desktopName = "VSCodium";
+    })  
     tidal-dl
     mumble
   ];

@@ -42,7 +42,7 @@
     displayManager = {
       gdm.enable = true;
       gdm.wayland = true;
-      #setupCommands = "xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --mode 1920x1080 --left-of eDP-1";
+      #setupCommands = "xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --mode 1280x1024 --left-of eDP-1";
     }; 
     desktopManager = {
       xterm.enable = false;

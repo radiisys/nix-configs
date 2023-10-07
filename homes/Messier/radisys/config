@@ -33,10 +33,10 @@ exec --no-startup-id polybar
 exec_always --no-startup-id blueman-applet
 
 # xrandr stuff for our second display
-exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --mode 1920x1080 --left-of eDP-1
+exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --mode 1280x1024 --left-of eDP-1
 
 # xrandr for when secondary panels are not connected
-exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --scale 1x1
+exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080
 
 # nitrogen
 exec_always --no-startup-id nitrogen --restore &
