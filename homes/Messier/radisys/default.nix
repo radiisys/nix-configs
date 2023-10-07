@@ -36,7 +36,7 @@
         timeout 240 'gtklock -d -b ~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg' \
         before-sleep 'gtklock -d -b ~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg'
     '';
-    file.".config/electron25-flags.conf".text = ''
+    file.".config/Electron/electron25-flags.conf".text = ''
       --use-gl=desktop
     '';
   };
