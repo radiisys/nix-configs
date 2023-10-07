@@ -107,8 +107,8 @@
          lidSwitch = "ignore";
        };
        hardware.nvidia = {
-         powerManagement.enable = lib.mkForce true;
-         powerManagement.finegrained = lib.mkForce true;
+         powerManagement.enable = lib.mkForce false;
+         powerManagement.finegrained = lib.mkForce false;
          prime.offload.enable = lib.mkForce false;
          prime.offload.enableOffloadCmd = lib.mkForce false;
          prime.sync.enable = lib.mkForce true;
