@@ -39,6 +39,7 @@
 
   services.xserver = {
     enable = true;
+    tty = 7;
     displayManager.startx.enable = true;
     desktopManager = {
       xterm.enable = false;
@@ -202,6 +203,7 @@
   services.fwupd.enable = true;
   services.greetd = {
     enable = true;
+    vt = config.services.xserver.tty;
     settings = {
       default_session = {
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet";
