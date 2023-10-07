@@ -3,6 +3,9 @@
     obs-studio
     playerctl
     ripcord
+    grim
+    slurp
+    wl-clipboard
     rnote
     rofi
     wofi

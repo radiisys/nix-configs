@@ -158,6 +158,8 @@
   environment.systemPackages = with pkgs; [
     nvidia-vaapi-driver
     onboard
+    gtklock
+    swayidle
     picom
     logitech-udev-rules
     pulseaudio
