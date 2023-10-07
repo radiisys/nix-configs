@@ -64,7 +64,7 @@
         "Fuchsia-Pop";
 
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = false;
     systemd.enable = true;
     settings = import ./hyprland.nix;
   };

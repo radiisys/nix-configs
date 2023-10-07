@@ -145,9 +145,9 @@
   # the configuration (pain)
   programs = {
     hyprland = {
-      enable = true;
-      xwayland.enable = true;
-      enableNvidiaPatches = true;
+      enable = false;
+      xwayland.enable = false;
+      enableNvidiaPatches = false;
     };
     steam.enable = true;
     nm-applet.enable = true;
@@ -214,7 +214,7 @@
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "nvidia" "nvidia_drm" ];
-  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+  # boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
   # enable networking
   networking.networkmanager.enable = true;
