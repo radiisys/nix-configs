@@ -27,18 +27,15 @@
     file.".config/i3/config".source = ./config;
     file.".config/i3status/config".source = ./i3status.conf;
     file.".config/polybar/config.ini".source = ./config.ini;
-    file.".config/hypr/hyprpaper.conf".text = ''
-      preload = ~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg
-      wallpaper = eDP-1,~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg
-    '';
-    file.".config/lockonsleep/config.sh".text = ''
-      exec swayidle -w \
-        timeout 240 'gtklock -d -b ~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg' \
-        before-sleep 'gtklock -d -b ~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg'
-    '';
-    file.".config/Electron/electron25-flags.conf".text = ''
-      --use-gl=desktop
-    '';
+    #file.".config/hypr/hyprpaper.conf".text = ''
+      #preload = ~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg
+      #wallpaper = eDP-1,~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg
+    #'';
+    #file.".config/lockonsleep/config.sh".text = ''
+      #exec swayidle -w \
+        #timeout 240 'gtklock -d -b ~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg' \
+        #before-sleep 'gtklock -d -b ~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg'
+    #'';
     file.".xinitrc".text = ''
       exec i3
     '';
@@ -66,11 +63,11 @@
         "sha256-BvVE9qupMjw7JRqFUj1J0a4ys6kc9fOLBPx2bGaapTk="
         "Fuchsia-Pop";
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemd.enable = true;
-    settings = import ./hyprland.nix;
-  };
+  #wayland.windowManager.hyprland = {
+    #enable = true;
+    #systemd.enable = true;
+    #settings = import ./hyprland.nix;
+  #};
   
   # let HM manage itself when in standalone mode
   programs.home-manager.enable = true;
