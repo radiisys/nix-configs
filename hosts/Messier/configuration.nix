@@ -145,9 +145,9 @@
   # the configuration (pain)
   programs = {
     hyprland = {
-      enable = false;
-      xwayland.enable = false;
-      enableNvidiaPatches = false;
+      enable = true;
+      xwayland.enable = true;
+      enableNvidiaPatches = true;
     };
     steam.enable = true;
     nm-applet.enable = true;
