@@ -56,7 +56,7 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id onboard
 
 # picom
-exec_always --no-startup-id "picom --config ~/.config/nixos/picom.conf"
+#exec_always --no-startup-id "picom --config ~/.config/nixos/picom.conf"
 
 # Use wpctl to adjust volume in PipeWire.
 set $refresh_i3status killall -SIGUSR1 i3status
