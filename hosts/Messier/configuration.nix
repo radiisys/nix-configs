@@ -39,9 +39,6 @@
 
   services.xserver = {
     enable = true;
-    displayManager = {
-      lightdm.enable = true;
-    }; 
     desktopManager = {
       xterm.enable = false;
     };
@@ -201,6 +198,7 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.fwupd.enable = true;
+  services.greetd.enable = true;
 
   # TODO: Set your hostname
   networking.hostName = "Messier";
