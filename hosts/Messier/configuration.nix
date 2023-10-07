@@ -40,9 +40,7 @@
   services.xserver = {
     enable = true;
     displayManager = {
-      gdm.enable = true;
-      gdm.wayland = true;
-      #setupCommands = "xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --mode 1280x1024 --left-of eDP-1";
+      lightdm.enable = true;
     }; 
     desktopManager = {
       xterm.enable = false;
