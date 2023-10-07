@@ -3,12 +3,8 @@
     obs-studio
     playerctl
     ripcord
-    grim
-    slurp
-    wl-clipboard
     rnote
     rofi
-    wofi
     polybar
     drawing
     signal-desktop
@@ -28,15 +24,7 @@
     firefox-devedition
     stellarium
     beeper
-    (writeShellApplication {
-       name = "vscodium";
-       text = "${pkgs.vscodium}/bin/codium --use-gl=desktop";
-    })
-    (makeDesktopItem {
-       name = "vscodium";
-       exec = "vscodium";
-       desktopName = "VSCodium";
-    })  
+    vscodium
     tidal-dl
     mumble
   ];

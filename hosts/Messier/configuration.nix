@@ -39,8 +39,7 @@
 
   services.xserver = {
     enable = true;
-    #displayManager.startx.enable = true;
-    displayManager.lightdm.enable = true;
+    displayManager.startx.enable = true;
     desktopManager = {
       xterm.enable = false;
     };
@@ -143,11 +142,6 @@
 
   # the configuration (pain)
   programs = {
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-      enableNvidiaPatches = true;
-    };
     steam.enable = true;
     nm-applet.enable = true;
     adb.enable = true;
@@ -156,7 +150,7 @@
 
   environment.systemPackages = with pkgs; [
     nvidia-vaapi-driver
-    #greetd.tuigreet
+    greetd.tuigreet
     libva
     libsForQt5.qt5ct
     onboard
@@ -201,14 +195,14 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.fwupd.enable = true;
-  #services.greetd = {
-    #enable = true;
-    #settings = {
-      #default_session = {
-         #command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd startx";
-      #};
-    #};
-  #};
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd startx";
+      };
+    };
+  };
 
   console.useXkbConfig = true;
 
@@ -224,7 +218,7 @@
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "nvidia" "nvidia_drm" ];
-  # boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
   # enable networking
   networking.networkmanager.enable = true;
