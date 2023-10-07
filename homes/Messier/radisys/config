@@ -23,9 +23,6 @@ font pango:monospace 8
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
-# picom
-exec_always --no-startup-id "picom --config ~/.config/nixos/picom.conf"
-
 # polybar
 exec --no-startup-id polybar
 
@@ -36,7 +33,7 @@ exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080
 
 # xrandr stuff for secondary panels (igpu)
-exec_always --no-startup-id xrandr --output DP-1-4 --auto --right-of eDP-1 --output HDMI-1-0 --auto --right-of DP-1-4
+exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --auto --right-of eDP-1 --output HDMI-1-0 --auto --right-of DP-1-4
 
 # xrandr stuff for secondary panels (no igpu)
 exec_always --no-startup-id xrandr --output DP-4 --mode 1280x1024 --output HDMI-0 --mode 1920x1080 --right-of DP-4
@@ -57,6 +54,9 @@ exec --no-startup-id nm-applet
 
 # onboard for the touch panel in this device - commented out as we don't use touch for device use often
 #exec --no-startup-id onboard
+
+# picom
+exec_always --no-startup-id "picom --config ~/.config/nixos/picom.conf"
 
 # Use wpctl to adjust volume in PipeWire.
 set $refresh_i3status killall -SIGUSR1 i3status
