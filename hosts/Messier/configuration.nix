@@ -81,8 +81,8 @@
   environment.pathsToLink = [ "/libexec" ];
 
   hardware.nvidia = {
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
+    powerManagement.enable = true;
+    powerManagement.finegrained = true;
     open = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     nvidiaSettings = true;
@@ -157,6 +157,8 @@
 
   environment.systemPackages = with pkgs; [
     nvidia-vaapi-driver
+    libva
+    libsForQt5.qt5ct
     onboard
     gtklock
     swayidle
@@ -212,6 +214,7 @@
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "nvidia" "nvidia_drm" ];
+  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
   # enable networking
   networking.networkmanager.enable = true;
