@@ -110,7 +110,7 @@
          powerManagement.finegrained = lib.mkForce false;
          prime.offload.enable = lib.mkForce false;
          prime.offload.enableOffloadCmd = lib.mkForce false;
-         prime.sync.enable = lib.mkForce false;
+         prime.sync.enable = lib.mkForce true;
        };
     };
   };
