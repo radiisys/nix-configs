@@ -22,12 +22,10 @@
     "XCURSOR_SIZE,24"
     "GDK_SCALE,2"
     "LIBVA_DRIVER_NAME,nvidia"
-    "VDPAU_DRIVER,nvidia"
-    "GBM_BACKEND,nvidia"
     "XDG_SESSION_TYPE,wayland"
+    "GBM_BACKEND,nvidia"
+    "__GLX_VENDOR_LIBRARY_NAME,nvidia"
     "WLR_NO_HARDWARE_CURSORS,1"
-    "__NV_PRIME_RENDER_OFFLOAD,1"
-    "__VK_LAYER_NV_optimus,NVIDIA_only"
   ];
 
   "$mod" = "SUPER";
