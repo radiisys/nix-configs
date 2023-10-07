@@ -40,6 +40,7 @@
   services.xserver = {
     enable = true;
     displayManager.startx.enable = true;
+    #displayManager.lightdm.enable = true;
     desktopManager = {
       xterm.enable = false;
     };
@@ -47,19 +48,17 @@
     xkbVariant = "colemak";  
     videoDrivers = lib.mkForce [ "nvidia" ];
     config = ''
-      Section "Device"
-          Identifier  "Intel Graphics"
-          Driver      "intel"
-          Option      "TearFree"       "true"
-          Option      "SwapbuffersWait" "true"
-          BusID       "PCI:0:2:0"
+      Section "OutputClass"
+          Identifier  "intel"
+          MatchDriver "i915"
+          Driver      "modesetting"
       EndSection
-      Section "Device"
+      Section "OutputClass"
           Identifier  "nvidia"
+          MatchDriver "nvidia-drm"
           Driver      "nvidia"
-          BusID       "PCI:1:0:0"
           Option      "AllowEmptyInitialConfiguration"
-          Option      "TearFree"       "true"
+          Option      "PrimaryGPU" "yes"
       EndSection
     '';
     windowManager.i3 = {
@@ -199,7 +198,7 @@
     enable = true;
     settings = {
       default_session = {
-         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd startx";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd startx";
       };
     };
   };
