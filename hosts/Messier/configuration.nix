@@ -47,20 +47,20 @@
     layout = "us";
     xkbVariant = "colemak";  
     videoDrivers = lib.mkForce [ "nvidia" ];
-    config = ''
-      Section "OutputClass"
-          Identifier  "intel"
-          MatchDriver "i915"
-          Driver      "modesetting"
-      EndSection
-      Section "OutputClass"
-          Identifier  "nvidia"
-          MatchDriver "nvidia-drm"
-          Driver      "nvidia"
-          Option      "AllowEmptyInitialConfiguration"
-          Option      "PrimaryGPU" "yes"
-      EndSection
-    '';
+    #config = ''
+      #Section "OutputClass"
+          #Identifier  "intel"
+          #MatchDriver "i915"
+          #Driver      "modesetting"
+      #EndSection
+      #Section "OutputClass"
+          #Identifier  "nvidia"
+          #MatchDriver "nvidia-drm"
+          #Driver      "nvidia"
+          #Option      "AllowEmptyInitialConfiguration"
+          #Option      "PrimaryGPU" "yes"
+      #EndSection
+    #'';
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
@@ -76,8 +76,8 @@
   environment.pathsToLink = [ "/libexec" ];
 
   hardware.nvidia = {
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
+    powerManagement.enable = true;
+    powerManagement.finegrained = true;
     open = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     nvidiaSettings = true;
@@ -88,11 +88,10 @@
   hardware.nvidia.prime = {
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";
-    sync.enable = true;
-    #offload = {
-      #enable = true;
-      #enableOffloadCmd = true;
-    #};
+    offload = {
+      enable = true;
+      enableOffloadCmd = true;
+    };
   };
 
   specialisation = {
@@ -150,7 +149,6 @@
 
   environment.systemPackages = with pkgs; [
     nvidia-vaapi-driver
-    greetd.tuigreet
     libva
     libsForQt5.qt5ct
     onboard
@@ -195,14 +193,6 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.fwupd.enable = true;
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd startx";
-      };
-    };
-  };
 
   console.useXkbConfig = true;
 
