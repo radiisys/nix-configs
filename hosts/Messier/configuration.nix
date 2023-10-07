@@ -40,8 +40,8 @@
   services.xserver = {
     enable = true;
     displayManager = {
-      gdm.enable = true;
-      setupCommands = "xrandr --output DP-4 --mode 1280x1024 --output HDMI-0 --mode 1920x1080 --right-of DP-4";
+      lightdm.enable = true;
+      #setupCommands = "xrandr --output DP-4 --mode 1280x1024 --output HDMI-0 --mode 1920x1080 --right-of DP-4";
     }; 
     desktopManager = {
       xterm.enable = false;
