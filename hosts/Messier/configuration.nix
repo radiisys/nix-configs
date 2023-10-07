@@ -41,7 +41,7 @@
     enable = true;
     displayManager = {
       gdm.enable = true;
-      setupCommands = "xrandr --output DP-3 --auto";
+      setupCommands = "xrandr --output DP-3 --mode 1280x1024 --output HDMI-A-1 --mode 1920x1080 --right-of DP-3";
     }; 
     desktopManager = {
       xterm.enable = false;
@@ -215,6 +215,7 @@
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "nvidia" "nvidia_drm" ];
+  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
   # enable networking
   networking.networkmanager.enable = true;
