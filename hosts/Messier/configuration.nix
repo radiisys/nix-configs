@@ -150,6 +150,7 @@
     nm-applet.enable = true;
     adb.enable = true;
     dconf.enable = true;
+    regreet.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -198,7 +199,9 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.fwupd.enable = true;
-  services.greetd.enable = true;
+  services.greetd = {
+    enable = true;
+  };
 
   # TODO: Set your hostname
   networking.hostName = "Messier";
