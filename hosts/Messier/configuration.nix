@@ -203,6 +203,8 @@
     enable = true;
   };
 
+  console.useXkbConfig = true;
+
   # TODO: Set your hostname
   networking.hostName = "Messier";
 
