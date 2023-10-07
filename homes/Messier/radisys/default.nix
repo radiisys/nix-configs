@@ -39,6 +39,9 @@
     file.".config/Electron/electron25-flags.conf".text = ''
       --use-gl=desktop
     '';
+    file.".xinitrc".text = ''
+      exec i3
+    '';
   };
 
   home.pointerCursor =
