@@ -53,7 +53,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemdIntegration = true;
+    systemd.enable = true;
     settings = import ./hyprland.nix;
   };
   
