@@ -41,7 +41,8 @@
     enable = true;
     displayManager = {
       gdm.enable = true;
-      setupCommands = "xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --mode 1920x1080 --left-of eDP-1";
+      gdm.wayland = true;
+      #setupCommands = "xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --mode 1920x1080 --left-of eDP-1";
     }; 
     desktopManager = {
       xterm.enable = false;
@@ -82,7 +83,7 @@
   hardware.nvidia = {
     powerManagement.enable = false;
     powerManagement.finegrained = false;
-    open = true;
+    open = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     nvidiaSettings = true;
     modesetting.enable = true;
@@ -143,6 +144,11 @@
 
   # the configuration (pain)
   programs = {
+    hyprland = {
+      enable = true;
+      xwayland = true;
+      enableNvidiaPatches = true;
+    };
     steam.enable = true;
     nm-applet.enable = true;
     adb.enable = true;
