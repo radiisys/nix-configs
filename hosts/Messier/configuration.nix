@@ -40,7 +40,7 @@
   services.xserver = {
     enable = true;
     displayManager = {
-      lightdm.enable = true;
+      sddm.enable = true;
       #setupCommands = "xrandr --output DP-4 --mode 1280x1024 --output HDMI-0 --mode 1920x1080 --right-of DP-4";
     }; 
     desktopManager = {
@@ -82,7 +82,7 @@
   hardware.nvidia = {
     powerManagement.enable = true;
     powerManagement.finegrained = true;
-    open = false;
+    open = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     nvidiaSettings = true;
     modesetting.enable = true;
@@ -106,6 +106,7 @@
          lidSwitch = "ignore";
        };
        hardware.nvidia = {
+         modesetting.enable = lib.mkForce false;
          powerManagement.enable = lib.mkForce false;
          powerManagement.finegrained = lib.mkForce false;
          prime.offload.enable = lib.mkForce false;
