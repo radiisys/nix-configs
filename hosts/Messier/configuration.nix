@@ -155,7 +155,7 @@
 
   environment.systemPackages = with pkgs; [
     nvidia-vaapi-driver
-    greetd.gtkgreet
+    greetd.tuigreet
     libva
     libsForQt5.qt5ct
     onboard
@@ -204,7 +204,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet";
       };
     };
   };
