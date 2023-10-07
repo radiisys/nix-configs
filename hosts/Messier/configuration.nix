@@ -146,7 +146,7 @@
   programs = {
     hyprland = {
       enable = true;
-      xwayland = true;
+      xwayland.enable = true;
       enableNvidiaPatches = true;
     };
     steam.enable = true;
