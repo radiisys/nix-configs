@@ -40,7 +40,7 @@
   services.xserver = {
     enable = true;
     displayManager = {
-      lightdm.enable = true;
+      sddm.enable = true;
     }; 
     desktopManager = {
       xterm.enable = false;
