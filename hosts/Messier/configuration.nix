@@ -40,7 +40,8 @@
   services.xserver = {
     enable = true;
     displayManager = {
-      sddm.enable = true;
+      gdm.enable = true;
+      setupCommands = "xrandr --output DP-3 --auto";
     }; 
     desktopManager = {
       xterm.enable = false;
@@ -214,7 +215,6 @@
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "nvidia" "nvidia_drm" ];
-  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
   # enable networking
   networking.networkmanager.enable = true;
