@@ -62,6 +62,13 @@
     #settings = import ./hyprland.nix;
   #};
   
+  systemd.user.targets.tray = {
+	  Unit = {
+		  Description = "Home Manager System Tray";
+		  Requires = [ "graphical-session-pre.target" ];
+		};
+	};
+
   # let HM manage itself when in standalone mode
   programs.home-manager.enable = true;
 
