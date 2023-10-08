@@ -28,8 +28,8 @@
     file.".config/i3status/config".source = ./i3status.conf;
     file.".config/polybar/config.ini".source = ./config.ini;
     file.".xinitrc".text = ''
-      xrandr --setprovideroutputsource modesetting NVIDIA-0
-      xrandr --auto
+      #xrandr --setprovideroutputsource modesetting NVIDIA-0
+      #xrandr --auto
       exec i3
     '';
   };
