@@ -39,10 +39,10 @@ exec --no-startup-id polybar
 exec_always --no-startup-id blueman-applet
 
 # xrandr test
-#exec_always --no-startup-id xrandr --output eDP-1-1 --mode 1920x1080
+exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080
 
 # xrandr stuff for secondary panels (igpu)
-#exec_always --no-startup-id xrandr --output eDP-1-1 --mode 1920x1080 --output DP-4 --auto --left-of eDP-1-1 --output HDMI-0 --auto --right-of eDP-1-1
+exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --auto --left-of eDP-1 --output HDMI-1-0 --auto --right-of eDP-1
 
 # nitrogen
 exec_always --no-startup-id nitrogen --restore &
