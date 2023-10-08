@@ -3,8 +3,12 @@
     obs-studio
     playerctl
     ripcord
+    wl-clipboard
+    grim
+    slurp
     rnote
     rofi
+    wofi
     polybar
     drawing
     signal-desktop
