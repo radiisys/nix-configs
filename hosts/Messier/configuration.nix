@@ -134,6 +134,7 @@
 
   environment.systemPackages = with pkgs; [
     nvidia-vaapi-driver
+    autorandr
     libva
     libsForQt5.qt5ct
     onboard    
