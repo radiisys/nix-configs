@@ -39,7 +39,7 @@
 
   services.xserver = {
     enable = true;
-    displayManager.lightdm.enable = true;
+    displayManager.startx.enable = true;
     desktopManager = {
       xterm.enable = false;
     };
@@ -151,6 +151,7 @@
     libva
     libsForQt5.qt5ct
     onboard
+    greetd.tuigreet
     gtklock
     swayidle
     picom
@@ -192,6 +193,14 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.fwupd.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd startx";
+      };
+    };
+  };
 
   console.useXkbConfig = true;
 
