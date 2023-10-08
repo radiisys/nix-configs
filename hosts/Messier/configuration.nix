@@ -40,27 +40,27 @@
   services.xserver = {
     enable = true;
     displayManager.startx.enable = true;
-    displayManager.lightdm.enable = true;
+    #displayManager.lightdm.enable = true;
     desktopManager = {
       xterm.enable = false;
     };
     layout = "us";
     xkbVariant = "colemak";  
     videoDrivers = lib.mkForce [ "nvidia" ];
-    #config = ''
-      #Section "OutputClass"
-          #Identifier  "intel"
-          #MatchDriver "i915"
-          #Driver      "modesetting"
-      #EndSection
-      #Section "OutputClass"
-          #Identifier  "nvidia"
-          #MatchDriver "nvidia-drm"
-          #Driver      "nvidia"
-          #Option      "AllowEmptyInitialConfiguration"
-          #Option      "PrimaryGPU" "yes"
-      #EndSection
-    #'';
+    config = ''
+      Section "OutputClass"
+          Identifier  "intel"
+          MatchDriver "i915"
+          Driver      "modesetting"
+      EndSection
+      Section "OutputClass"
+          Identifier  "nvidia"
+          MatchDriver "nvidia-drm"
+          Driver      "nvidia"
+          Option      "AllowEmptyInitialConfiguration"
+          Option      "PrimaryGPU" "yes"
+      EndSection
+    '';
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
@@ -76,9 +76,9 @@
   environment.pathsToLink = [ "/libexec" ];
 
   hardware.nvidia = {
-    powerManagement.enable = true;
-    powerManagement.finegrained = true;
-    open = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     nvidiaSettings = true;
     modesetting.enable = true;
@@ -88,10 +88,11 @@
   hardware.nvidia.prime = {
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";
-    offload = {
-      enable = true;
-      enableOffloadCmd = true;
-    };
+    sync.enable = true;
+    #offload = {
+      #enable = true;
+      #enableOffloadCmd = true;
+    #};
   };
 
   specialisation = {
@@ -216,8 +217,8 @@
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "nvidia" "nvidia_drm" ];
-  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+  boot.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia_drm.modeset=1" ];
 
   # enable networking
   networking.networkmanager.enable = true;
