@@ -38,14 +38,11 @@ exec --no-startup-id polybar
 # blueman
 exec_always --no-startup-id blueman-applet
 
-# xrandr test
-exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080
-
-# xrandr stuff for secondary panels (igpu)
-exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --output DP-1-4 --auto --left-of eDP-1 --output HDMI-1-0 --auto --right-of eDP-1
-
 # nitrogen
 exec_always --no-startup-id nitrogen --restore &
+
+# autorandr
+exec_always --no-startup-id autorandr --change
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
