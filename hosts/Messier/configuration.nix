@@ -176,6 +176,8 @@
     XCURSOR_SIZE = "24";
   };
 
+  security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
+
   fonts.packages = with pkgs; [
 	font-awesome
 	jetbrains-mono
