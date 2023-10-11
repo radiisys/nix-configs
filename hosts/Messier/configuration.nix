@@ -43,6 +43,11 @@
     desktopManager = {
       xterm.enable = false;
     };
+    deviceSection = ''
+      Option "DRI" "2"
+      Option "TearFree" "true"
+    '';
+    UseGlamor = true;
     layout = "us";
     xkbVariant = "colemak";  
     videoDrivers = lib.mkForce [ "nvidia" ];

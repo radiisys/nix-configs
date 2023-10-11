@@ -76,6 +76,9 @@
 		};
 	};
 
+  # picom fixing
+  services.picom.vSync = true;
+
   # let HM manage itself when in standalone mode
   programs.home-manager.enable = true;
 
