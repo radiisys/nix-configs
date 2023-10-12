@@ -43,8 +43,8 @@
       ];
     };
   };
-
-  environment.pathsTolink = [ "/libexec" ];
+  
+  environment.pathsToLink = [ "/libexec" ];
 
   nixpkgs = {
     # Configure your nixpkgs instance
@@ -80,6 +80,9 @@
     };
 
   environment.systemPackages = with pkgs; [
+    autorandr
+    libva
+    picom
     virt-manager
     solaar
     logitech-udev-rules
@@ -92,23 +95,25 @@
     dunst
     (pkgs.discord-canary.override {
 	withVencord = true;
-    };
+    })
     (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
     temurin-jre-bin-8
     temurin-bin-18
-    libinput
     font-awesome
     polkit_gnome
     jetbrains-mono
     cinnamon.nemo
     udiskie
     libsForQt5.ark
+    lshw
   ];
   
   fonts.packages = with pkgs; [
 	font-awesome
 	jetbrains-mono
   ];
+
+  console.useXkbConfig = true;
 
   # TODO: Set your hostname
   networking.hostName = "Nebula";
@@ -156,7 +161,7 @@
 
   nix.gc = {
     automatic = true;
-    dates = "weekly;
+    dates = "weekly";
     options = "--delete-older-than 30d";
   };
 
