@@ -196,7 +196,6 @@
   # TODO: Set your hostname
   networking.hostName = "Messier";
 
-  virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true; 
   
   virtualisation.libvirtd = {
