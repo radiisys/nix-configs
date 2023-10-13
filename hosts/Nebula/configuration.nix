@@ -132,10 +132,12 @@
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "kvm-intel" "kvm-amd" "b43" "wl" "vfio-pci" ];
+  boot.kernelModules = [ "kvm-intel" "b43" "wl" "vfio_pci" "vfio_virqfd" "vfio_iommu_type1" "vfio" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   boot.extraModprobeConfig = "options kvm_intel kvm_amd nested=1";
   boot.kernelParams = [ "intel_iommu=on" "iommu=pt" ];
+  boot.blacklistedKernelModules = [ "i915" ];
+  boot.extraModprobeConfig = "options vfio-pci ids=8086:1912";
 
   # enable networking
   networking.networkmanager.enable = true;
