@@ -198,7 +198,8 @@
 
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true; 
- 
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
@@ -282,6 +283,8 @@
       # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
     ];
   };
+
+  users.extraGroups.vboxusers.members = [ "radisys" ];
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
