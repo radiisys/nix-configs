@@ -87,7 +87,6 @@
     clamshell.configuration = {
        system.nixos.tags = [ "clamshell" ];
        boot.kernelParams = [ "module_blacklist=i915" ];
-       boot.extraModprobeConfig = "options vfio-pci ids=8086:9bc4";
        services.logind = {
          lidSwitch = "ignore";
        };
@@ -198,7 +197,7 @@
   networking.hostName = "Messier";
 
   virtualisation.spiceUSBRedirection.enable = true; 
-  
+
   virtualisation.libvirtd = {
     enable = true;
     extraConfig = ''
