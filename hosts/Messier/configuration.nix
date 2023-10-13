@@ -87,6 +87,7 @@
     clamshell.configuration = {
        system.nixos.tags = [ "clamshell" ];
        boot.kernelParams = [ "module_blacklist=i915" ];
+       boot.extraModprobeConfig = "options vfio-pci ids=8086:9bc4";
        services.logind = {
          lidSwitch = "ignore";
        };
@@ -217,7 +218,6 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-intel" "vfio_pci" "vfio_virqfd" "vfio_iommu_type1" "vfio" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia_drm.modeset=1" ];
-  boot.extraModprobeConfig = "options vfio-pci ids=8086:9bc4";
 
   # enable networking
   networking.networkmanager.enable = true;
