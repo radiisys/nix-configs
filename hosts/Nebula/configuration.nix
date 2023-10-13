@@ -127,9 +127,10 @@
         '';
 	qemu.ovmf.enable = true;
         qemu.package = pkgs.qemu_kvm;
-	qemu.runAsRoot = true;
-        spiceUSBRedirection.enable = true;
+	qemu.runAsRoot = true;  
   };
+
+  virtualisation.spiceUSBRedirection.enable = true;
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
