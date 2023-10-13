@@ -128,6 +128,7 @@
 	qemu.ovmf.enable = true;
         qemu.package = pkgs.qemu_kvm;
 	qemu.runAsRoot = true;
+        spiceUSBRedirection.enable = true;
   };
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
