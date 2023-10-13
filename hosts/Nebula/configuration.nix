@@ -122,7 +122,11 @@
 
   virtualisation.libvirtd = {
 	enable = true;
+        extraConfig = ''
+          user="radisys"
+        '';
 	qemu.ovmf.enable = true;
+        qemu.package = pkgs.qemu_kvm;
 	qemu.runAsRoot = true;
   };
 
@@ -134,7 +138,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-intel" "b43" "wl" "vfio_pci" "vfio_virqfd" "vfio_iommu_type1" "vfio" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
-  boot.extraModprobeConfig = "options vfio-pci ids=8086:1912 kvm_intel nested=1";
+  boot.extraModprobeConfig = "options vfio-pci ids=8086:1912";
   boot.kernelParams = [ "intel_iommu=on" "iommu=pt" ];
   boot.blacklistedKernelModules = [ "i915" ];
 
