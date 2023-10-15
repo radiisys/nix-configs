@@ -184,7 +184,7 @@
   console.useXkbConfig = true;
 
   # TODO: Set your hostname
-  networking.hostName = "Messier";
+  networking.hostName = "Hyperion";
 
   virtualisation.spiceUSBRedirection.enable = true; 
 

@@ -8,7 +8,7 @@
   inputs = self.inputs;
 
   home-manager = inputs.home-manager.nixosModules.home-manager;
-  homeMessier = ../homes/Messier;
+  homeHyperion = ../homes/Hyperion;
   homeWhirlpool = ../homes/Whirlpool;
   homeGanymede = ../homes/Ganymede;
   homeEdible = ../homes/Edible;
@@ -36,14 +36,14 @@ in {
     ];
   };
 
-  Messier = nixpkgs.lib.nixosSystem {
+  Hyperion = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs outputs;};
     modules = [
       # this list defines which files will be imported to be used as "modules" in the system config
-      ./Messier/configuration.nix
+      ./Hyperion/configuration.nix
       # use the nixos-module for home-manager
       home-manager
-      homeMessier
+      homeHyperion
     ];
   };
 
