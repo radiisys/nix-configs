@@ -212,7 +212,7 @@
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/";
+  boot.initrd.luks.devices."luks-dcc16400-847d-4ce5-9c0a-e34e4ee98cee".device = "/dev/disk/by-uuid/dcc16400-847d-4ce5-9c0a-e34e4ee98cee";
   boot.supportedFilesystems = [ "exfat" "ntfs" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-intel" "vfio_pci" "vfio_virqfd" "vfio_iommu_type1" "vfio" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
