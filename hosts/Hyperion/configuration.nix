@@ -134,7 +134,6 @@
     dconf.enable = true;
     nm-applet.enable = true;
     steam.enable = true;
-    adb.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
