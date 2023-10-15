@@ -130,57 +130,47 @@
 
   # the configuration (pain)
   programs = {
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-      enableNvidiaPatches = true;
-    };
-    steam.enable = true;
-    nm-applet.enable = true;
     adb.enable = true;
     dconf.enable = true;
+    nm-applet.enable = true;
+    steam.enable = true;
+    adb.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
-    nvidia-vaapi-driver
     autorandr
-    libva
-    libsForQt5.qt5ct
-    onboard    
-    gtklock
-    swayidle
-    picom
-    logitech-udev-rules
-    pulseaudio
-    xss-lock
-    nitrogen
-    virt-manager
-    solaar
-    maim
-    xclip
-    xdotool
-    (pkgs.python3.withPackages(ps: with ps; [ tkinter ]))
-    python311Packages.dbus-python
-    temurin-jre-bin-8
-    temurin-bin-18
-    font-awesome
     blueman
     bluez
     bluez-alsa
-    dunst
-    polkit_gnome
-    jetbrains-mono
-    udiskie
     cinnamon.nemo
+    dunst
+    font-awesome
+    jetbrains-mono
     libsForQt5.ark
-    lshw
+    libsForQt5.qt5ct
+    libva
+    logitech-udev-rules
+    maim
+    nitrogen
+    nvidia-vaapi-driver
+    onboard    
+    picom
+    (pkgs.python3.withPackages(ps: with ps; [ tkinter ]))
+    polkit_gnome
+    pulseaudio
+    solaar
+    temurin-bin-18
+    temurin-jre-bin-8
+    udiskie
+    virt-manager
+    xclip
+    xdotool
+    xss-lock
   ];
 
   environment.variables = {
     XCURSOR_SIZE = "24";
   };
-
-  security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
 
   fonts.packages = with pkgs; [
 	font-awesome
