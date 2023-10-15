@@ -23,8 +23,14 @@ font pango:monospace 8
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
-# nitrogen
-exec_always --no-startup-id nitrogen --restore &
+# picom
+exec_always --no-startup-id "picom --config ~/.config/nixos/picom.conf"
+
+# udisks since lazy
+exec --no-startup-id "udiskie &"
+
+# dunst
+exec --no-startup-id "dunst"
 
 # polybar
 exec --no-startup-id polybar
@@ -32,9 +38,8 @@ exec --no-startup-id polybar
 # blueman
 exec_always --no-startup-id blueman-applet
 
-# xrandr stuff for our second display
-#exec_always --no-startup-id xrandr --output DP-1-4 --auto --left-of eDP-1
-#exec_always --no-startup-id xrandr --output HDMI-1-0 --auto --right-of eDP-1
+# nitrogen
+exec_always --no-startup-id nitrogen --restore &
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -46,6 +51,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+
+# onboard for the touch panel in this device - commented out as we don't use touch for device use often
+#exec --no-startup-id onboard
 
 # Use wpctl to adjust volume in PipeWire.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -72,7 +80,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+s exec --no-startup-id dmenu_run
 
 # A more modern dmenu replacement is rofi:
-bindcode $mod+x exec "rofi -modi drun,run -show drun"
+bindsym $mod+x exec "rofi -modi drun,run -show drun"
 
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.

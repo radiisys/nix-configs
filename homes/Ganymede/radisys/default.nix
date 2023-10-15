@@ -14,16 +14,19 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    ../../common/packages.nix
-    ../../common/programs.nix
     ../../common/arrpc.nix
+    ../../common/packages.nix # home.packages and similar stuff
+    ../../common/programs.nix # programs.<programName>.enable
     ../../common/udiskie.nix
   ];
 
+  # TODO: Set your username
   home = {
     username = "radisys";
     homeDirectory = "/home/radisys";
     file.".config/i3/config".source = ./config;
+    file.".config/i3status.config".source = ../../common/i3status.conf;
+    file.".config/polybar/config.ini".source = ./config.ini; 
   };
 
   # let HM manage itself when in standalone mode

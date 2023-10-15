@@ -1,43 +1,29 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     obs-studio
-    playerctl
-    ripcord
-    wl-clipboard
-    grim
-    slurp
-    rnote
-    rofi
-    wofi
-    polybar
-    drawing
-    signal-desktop
-    scrcpy
     alacritty
-    tetrio-desktop
-    hyprpaper
+    beeper
+    brightnessctl
+    firefox-devedition
+    fluffychat
+    hyfetch
+    playerctl
+    mumble
     networkmanagerapplet
     prismlauncher
-    brightnessctl
-    hyfetch
-    timidity
+    polybar
+    ripcord
+    rnote
+    rofi
+    scrcpy
+    signal-desktop
+    tetrio-desktop
     tidal-hifi
+    tidal-dl
+    timidity
     transmission-qt
     spotify
-    fluffychat
-    firefox-devedition
     stellarium
-    beeper
-    (writeShellApplication {
-       name = "vscodium";
-       text = "${pkgs.vscodium}/bin/codium --use-gl=desktop";
-    })
-    (makeDesktopItem {
-       name = "vscodium";
-       exec = "vscodium";
-       desktopName = "VSCodium";
-    })
-    tidal-dl
-    mumble
+    vscodium
   ];
 }

@@ -116,7 +116,7 @@
   console.useXkbConfig = true;
 
   # TODO: Set your hostname
-  networking.hostName = "Nebula";
+  networking.hostName = "Whirlpool";
 
   services.dbus.enable = true;
 

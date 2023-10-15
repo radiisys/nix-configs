@@ -24,12 +24,28 @@
     ./hardware-configuration.nix
   ];
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
+
   services.xserver = {
     enable = true;
     displayManager.lightdm.enable = true;
     desktopManager = {
       xterm.enable = false;
     };
+    deviceSection = ''
+      Option "DRI" "2"
+      Option "TearFree" "true"
+    '';
     layout = "gb";
     xkbVariant = "colemak";
     windowManager.i3 = {
@@ -49,6 +65,9 @@
   nixpkgs = {
     # Configure your nixpkgs instance
     config = {
+      packageOverrides = pkgs: {
+        vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+      };
       # Disable if you don't want unfree packages
       allowUnfree = true;
     };
@@ -80,26 +99,31 @@
   };
 
   environment.systemPackages = with pkgs; [
-    xss-lock
-    pulseaudio
-    nitrogen
-    virt-manager
-    solaar
-    maim
-    xclip
-    xdotool
-    logitech-udev-rules
-    (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
-    temurin-jre-bin-8
-    temurin-bin-18
-    font-awesome
+    autorandr
     blueman
     bluez
     bluez-alsa
-    polkit_gnome
-    udiskie
-    jetbrains-mono
     cinnamon.nemo
+    dunst
+    font-awesome
+    jetbrains-mono
+    libva
+    libsForQt5.ark
+    logitech-udev-rules
+    maim
+    nitrogen
+    picom
+    (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
+    polkit_gnome
+    pulseaudio
+    solaar
+    temurin-bin-18
+    temurin-jre-bin-8
+    virt-manager
+    xclip
+    xdotool
+    xss-lock
+    udiskie
   ];
   
   fonts.packages = with pkgs; [
@@ -109,18 +133,20 @@
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+ 
+  console.useXkbConfig = true;
 
   # TODO: Set your hostname
-  networking.hostName = "Dysnomia";
+  networking.hostName = "Ganymede";
 
   services.dbus.enable = true;
 
   virtualisation.libvirtd.enable = true;
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/";
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sdb";
+  boot.loader.grub.useOSProber = true;
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
 

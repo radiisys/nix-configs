@@ -18,9 +18,6 @@
 	
     # nixos-hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
-    # hyprland
-    hyprland.url = "github:hyprwm/Hyprland";
     
   };
 
@@ -28,7 +25,6 @@
     self,
     nixpkgs,
     home-manager,
-    hyprland,
     nixos-hardware,
     ...
   } @ inputs: let
@@ -67,68 +63,8 @@
     # Reusable home-manager modules you might want to export
     # These are usually stuff you would upstream into home-manager
     homeManagerModules = import ./modules/shared/home-manager;
-
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = import ./hosts {inherit nixpkgs self outputs nixos-hardware;};
-
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations = {
-       "radisys@Messier" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          # > Our main home-manager configuration file <
-          hyprland.homeManagerModules.default
-          {wayland.windowManager.hyprland.enable = true;}
-          ./homes/Messier
-        ];
-      };
-       "radisys@Dysnomia" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          # > Our main home-manager configuration file <
-          ./homes/Dysnomia
-        ];
-      };
-
-      "radisys@Cygnus" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          # > Our main home-manager configuration file <
-          ./homes/Cygnus
-        ];
-      };
-
-       "radisys@Nebula" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          # > Our main home-manager configuration file <
-          ./homes/Nebula
-        ];
-      };
-
-       "maya@Edible" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          # > Our main home-manager configuration file <
-          ./homes/Edible
-        ];
-      };
-       "radisys@Pluto" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          # > Our main home-manager configuration file <
-          ./homes/Pluto
-        ];
-      };
-      
+    nixosConfigurations = import ./hosts {inherit nixpkgs self outputs nixos-hardware;};   
     };
-  };
 }
