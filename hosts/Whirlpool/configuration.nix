@@ -136,7 +136,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/";
-  boot.supportedFilesystems = [ "exfat" ];
+  boot.supportedFilesystems = [ "exfat" "xfs" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-intel" "vfio_pci" "vfio_virqfd" "vfio_iommu_type1" "vfio" ];
   boot.extraModprobeConfig = "options vfio-pci ids=8086:1912";
