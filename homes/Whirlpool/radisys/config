@@ -24,7 +24,7 @@ font pango:monospace 8
 exec --no-startup-id dex --autostart --environment i3
 
 # picom
-exec_always --no-startup-id "picom --config ~/.config/nixos/picom.conf"
+exec --no-startup-id "picom"
 
 # udisks since lazy
 exec --no-startup-id "udiskie &"
@@ -34,12 +34,6 @@ exec --no-startup-id "dunst"
 
 # polybar
 exec --no-startup-id polybar
-
-# blueman
-exec_always --no-startup-id blueman-applet
-
-# nitrogen
-exec_always --no-startup-id nitrogen --restore &
 
 # autorandr
 exec_always --no-startup-id autorandr --change
@@ -55,16 +49,14 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# onboard for the touch panel in this device - commented out as we don't use touch for device use often
-#exec --no-startup-id onboard
+# nitrogen
+exec_always --no-startup-id nitrogen --restore &
 
 # Use wpctl to adjust volume in PipeWire.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%- && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && $refresh_i3status
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl --device=intel_backlight s 5%+
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --device=intel_backlight s 5%-
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

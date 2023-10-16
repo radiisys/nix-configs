@@ -24,7 +24,7 @@ font pango:monospace 8
 exec --no-startup-id dex --autostart --environment i3
 
 # picom
-exec_always --no-startup-id "picom --config ~/.config/nixos/picom.conf"
+exec --no-startup-id "picom"
 
 # udisks since lazy
 exec --no-startup-id "udiskie &"

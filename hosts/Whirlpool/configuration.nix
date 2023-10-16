@@ -1,5 +1,3 @@
-# This is your system's configuration file.
-# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 {
   inputs,
   outputs,
@@ -8,24 +6,27 @@
   pkgs,
   ...
 }: {
-  # You can import other NixOS modules here
   imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
-
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
-
-    # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
   ];
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      rocm-opencl-icd
+      rocm-opencl-runtime
+      amdvlk
+    ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+    ];
+  };
+
   services.xserver = {
     enable = true;
+    videoDrivers = [ "amdgpu" ];
     displayManager.lightdm.enable = true;
     desktopManager = {
       xterm.enable = false;
@@ -47,7 +48,6 @@
   environment.pathsToLink = [ "/libexec" ];
 
   nixpkgs = {
-    # Configure your nixpkgs instance
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
@@ -55,23 +55,16 @@
   };
 
   nix = {
-    # This will add each flake input as a registry
-    # To make nix3 commands consistent with your flake
     registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
 
-    # This will additionally add your inputs to the system's legacy channels
-    # Making legacy nix commands consistent as well, awesome!
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
     settings = {
-      # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
-      # Deduplicate and optimize nix store
       auto-optimise-store = true;
     };
   };
 
-  # pain from here on out
   programs = {
     steam.enable = true;
     nm-applet.enable = true;
@@ -81,31 +74,32 @@
 
   environment.systemPackages = with pkgs; [
     autorandr
-    libva
-    picom
-    virt-manager
-    solaar
-    logitech-udev-rules
-    xss-lock
-    pulseaudio
-    nitrogen
-    maim
-    xclip
-    xdotool
+    cinnamon.nemo
     dunst
+    font-awesome
+    jetbrains-mono
+    libsForQt5.ark
+    libsForQt5.qt5ct
+    libva
+    logitech-udev-rules
+    lshw
+    maim
+    nitrogen
+    picom
     (pkgs.discord-canary.override {
-	withVencord = true;
+      withVencord = true;
     })
     (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
-    temurin-jre-bin-8
-    temurin-bin-18
-    font-awesome
     polkit_gnome
-    jetbrains-mono
-    cinnamon.nemo
+    pulseaudio
+    solaar
+    temurin-bin-18
+    temurin-jre-bin-8
     udiskie
-    libsForQt5.ark
-    lshw
+    virt-manager
+    xclip
+    xdotool
+    xss-lock
   ];
   
   fonts.packages = with pkgs; [
@@ -113,12 +107,19 @@
 	jetbrains-mono
   ];
 
+  # services
+  services.printing.enable = true;
+  services.dbus.enable = true;
+  services.udisks2.enable = true;
+  services.lvm.enable = true;
+  services.zerotierone.enable = true;
+  services.logind = {
+    extraConfig = "HandlePowerKey=suspend";
+  };
+
   console.useXkbConfig = true;
 
-  # TODO: Set your hostname
   networking.hostName = "Whirlpool";
-
-  services.dbus.enable = true;
 
   virtualisation.libvirtd = {
 	enable = true;
@@ -132,26 +133,23 @@
 
   virtualisation.spiceUSBRedirection.enable = true;
 
-  # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "kvm-intel" "b43" "wl" "vfio_pci" "vfio_virqfd" "vfio_iommu_type1" "vfio" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+  boot.kernelModules = [ "kvm-intel" "vfio_pci" "vfio_virqfd" "vfio_iommu_type1" "vfio" ];
   boot.extraModprobeConfig = "options vfio-pci ids=8086:1912";
   boot.kernelParams = [ "intel_iommu=on" "iommu=pt" ];
   boot.blacklistedKernelModules = [ "i915" ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
 
   # enable networking
   networking.networkmanager.enable = true;
-  networking.enableB43Firmware = true;
 
-  # Set a time zone, idiot
+  # Set a time zone
   time.timeZone = "Europe/London";
 
-  # Fun internationalisation stuffs (AAAAAAAA)
   i18n.defaultLocale = "it_IT.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -171,25 +169,13 @@
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
-
-  # udisks
-  services.udisks2.enable = true;
   
-  # Would you like to be able to fucking print?
-  services.printing.enable = true;
-
-  # Sound (kill me now)
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-  };
-
-  
-  services.logind = {
-    extraConfig = "HandlePowerKey=suspend";
   };
 
   security.polkit.enable = true;
@@ -210,11 +196,6 @@
   };
 };
 
-  services.lvm.enable = true;
-
-  services.zerotierone.enable = true;
-  
-  # define user acc
   users.users.radisys = {
     isNormalUser = true;
     description = "radisys";
@@ -223,10 +204,8 @@
       # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
     ];
   };
-
-  # This setups a SSH server. Very important if you're setting up a headless system.
-  # Feel free to remove if you don't need it.
-  services.openssh = {
+  
+services.openssh = {
     enable = true;
     settings = {
       PermitRootLogin = "yes";
@@ -234,6 +213,5 @@
     };
   };
 
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";
 }
