@@ -53,7 +53,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # nitrogen
-exec_always --no-startup-id nitrogen --restore &
+exec_always --no-startup-id sleep 5; nitrogen --restore &
 
 # Use wpctl to adjust volume in PipeWire.
 set $refresh_i3status killall -SIGUSR1 i3status
