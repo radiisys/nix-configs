@@ -202,7 +202,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.luks.devices."luks-dcc16400-847d-4ce5-9c0a-e34e4ee98cee".device = "/dev/disk/by-uuid/dcc16400-847d-4ce5-9c0a-e34e4ee98cee";
-  boot.supportedFilesystems = [ "exfat" "ntfs" ];
+  boot.supportedFilesystems = [ "exfat" "ntfs" "xfs" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-intel" "vfio_pci" "vfio_virqfd" "vfio_iommu_type1" "vfio" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia_drm.modeset=1" ];
