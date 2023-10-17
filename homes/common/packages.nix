@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     obs-studio
+    vlc
     wget
     alacritty
     beeper
