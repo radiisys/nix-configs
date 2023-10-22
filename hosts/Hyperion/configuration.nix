@@ -90,6 +90,10 @@
        services.logind = {
          lidSwitch = "ignore";
        };
+       hardware.nvidia = {
+         powermanagement.enable = lib.mkForce false;
+         powerManagement.finegrained = lib.mkForce false;
+       };
        hardware.nvidia.prime = {
          offload = {
            enable = lib.mkForce false;
