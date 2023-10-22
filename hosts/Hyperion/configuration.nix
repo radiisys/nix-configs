@@ -91,7 +91,7 @@
          lidSwitch = "ignore";
        };
        hardware.nvidia = {
-         powermanagement.enable = lib.mkForce false;
+         powerManagement.enable = lib.mkForce false;
          powerManagement.finegrained = lib.mkForce false;
        };
        hardware.nvidia.prime = {
