@@ -49,7 +49,7 @@
     '';
     layout = "us";
     xkbVariant = "colemak";  
-    videoDrivers = lib.mkForce [ "nvidia" ];
+    videoDrivers = [ "nvidia" ];
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
@@ -67,7 +67,7 @@
   hardware.nvidia = {
     powerManagement.enable = true;
     powerManagement.finegrained = true;
-    open = false;
+    open = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     nvidiaSettings = true;
     modesetting.enable = true;
@@ -91,11 +91,10 @@
          lidSwitch = "ignore";
        };
        hardware.nvidia = {
-         powerManagement.enable = lib.mkForce false;
-         powerManagement.finegrained = lib.mkForce false;
-         prime.offload.enable = lib.mkForce false;
-         prime.offload.enableOffloadCmd = lib.mkForce false;
-         prime.sync.enable = lib.mkForce true;
+         offload = {
+           enable = lib.mkForce false;
+           enableOffloadCmd = lib.mkForce false;
+         };
        };
     };
   };
