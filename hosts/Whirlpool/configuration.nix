@@ -137,12 +137,11 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" "xfs" "ntfs" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-intel" "vfio_pci" "vfio_virqfd" "vfio_iommu_type1" "vfio" ];
   boot.extraModprobeConfig = "options vfio-pci ids=8086:1912";
   boot.kernelParams = [ "intel_iommu=on" "iommu=pt" ];
   boot.blacklistedKernelModules = [ "i915" ];
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # enable networking
   networking.networkmanager.enable = true;
