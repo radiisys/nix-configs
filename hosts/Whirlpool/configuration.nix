@@ -74,6 +74,7 @@
 
   environment.systemPackages = with pkgs; [
     autorandr
+    openrgb-with-all-plugins
     cinnamon.nemo
     dunst
     font-awesome
@@ -116,7 +117,6 @@
   services.logind = {
     extraConfig = "HandlePowerKey=suspend";
   };
-  services.udev.extraRules = import ./60-openrgb.rules    
 
   console.useXkbConfig = true;
 
