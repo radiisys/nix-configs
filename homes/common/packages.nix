@@ -13,10 +13,10 @@
     mumble
     networkmanagerapplet
     prismlauncher
-    polybar
+    waybar
     ripcord
     rnote
-    rofi
+    wofi
     scrcpy
     signal-desktop
     tetrio-desktop
