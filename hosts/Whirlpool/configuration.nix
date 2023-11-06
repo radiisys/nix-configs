@@ -228,7 +228,7 @@ let
 
   security.polkit.enable = true;
 
-  security.pam.services.swaylock = {}
+  security.pam.services.swaylock = {};
 
  systemd = {
   user.services.polkit-gnome-authentication-agent-1 = {
