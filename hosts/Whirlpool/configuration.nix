@@ -110,7 +110,6 @@ let
     grim
     slurp
     wl-clipboard
-    wl-clipboard-history
     bemenu
     wdisplays
     openrgb-with-all-plugins
