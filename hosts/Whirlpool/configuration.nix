@@ -97,6 +97,7 @@ let
 
   environment.systemPackages = with pkgs; [
     dbus-sway-environment
+    swayosd
     configure-gtk
     wayland
     xdg-utils

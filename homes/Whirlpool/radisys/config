@@ -90,10 +90,13 @@ output * bg ~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg stretch
     # Screenshotting
     bindsym $mod+Shift+S exec grim -g \"$(slurp)\" - | wl-copy
 
+    # SwayOSD
+    exec swayosd-server
+
     # Volume control
-    bindsym XF86AudioRaiseVolume exec 'wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+'
-    bindsym XF86AudioLowerVolume exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-'
-    bindsym XF86AudioMute exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'
+    bindsym XF86AudioRaiseVolume exec swayosd-client --output-volume raise
+    bindsym XF86AudioLowerVolume exec  swayosd-client --output-volume lower
+    bindsym XF86AudioMute exec swayosd-client --output-volume mute-toggle
 
 #
 # Moving around:
