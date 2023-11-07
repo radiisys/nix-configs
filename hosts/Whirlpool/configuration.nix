@@ -98,6 +98,7 @@ let
   environment.systemPackages = with pkgs; [
     dbus-sway-environment
     swayosd
+    pavucontrol
     configure-gtk
     wayland
     xdg-utils
