@@ -58,10 +58,8 @@ let
   services.xserver = {
     enable = true;
     videoDrivers = [ "amdgpu" ];
-    displayManager.lightdm.enable = true;
-    desktopManager = {
-      xterm.enable = false;
-    };
+    displayManager.gdm.enable = true;
+    displayManager.gdm.hyprland = true;
     layout = "us";
     xkbVariant = "colemak";
   };
