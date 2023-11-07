@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     obs-studio
+    pamixer
     wob
     vlc
     wget
