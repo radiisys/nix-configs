@@ -15,6 +15,7 @@
     username = "radisys";
     homeDirectory = "/home/radisys";
     file.".config/sway/config".source = ./config;
+    file.".config/waybar/config".source = ./waybar;
   };
 
   systemd.user.targets.tray = {
