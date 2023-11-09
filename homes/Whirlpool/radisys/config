@@ -90,6 +90,9 @@ output * bg ~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg stretch
     # SwayOSD
     exec swayosd-server
 
+    # Waybar
+    exec waybar
+
     # Volume control
     bindsym XF86AudioRaiseVolume exec swayosd --output-volume raise
     bindsym XF86AudioLowerVolume exec  swayosd --output-volume lower
