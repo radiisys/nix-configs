@@ -61,7 +61,6 @@ let
     displayManager.gdm.enable = true;
     displayManager.gdm.wayland = true;
     layout = "us";
-    xkbVariant = "colemak";
   };
   
   environment.pathsToLink = [ "/libexec" ];
