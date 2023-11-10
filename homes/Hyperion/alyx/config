@@ -43,7 +43,7 @@ output * bg ~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg stretch
    input type:keyboard {
        xkb_layout us
        xkb_variant colemak
-   };
+   }
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section
