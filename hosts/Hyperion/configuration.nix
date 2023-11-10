@@ -7,20 +7,40 @@
   config,
   pkgs,
   ...
-}: {
+}:
+
+let
+  dbus-sway-environment = pkgs.writeTextFile {
+    name = "dbus-sway-environment";
+    destination = "/bin/dbus-sway-environment";
+    executable = true;
+
+    text = ''
+      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+      systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+      systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+    '';
+  };
+
+  configure-gtk = pkgs.writeTextFile {
+    name = "configure-gtk";
+    destination = "/bin/configure-gtk";
+    executable = true;
+    text = let
+      schema = pkgs.gsettings-desktop-schemas;
+      datadir = "${schema}/share/gsettings-schemas/${schema.name}";
+    in ''
+      export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
+      gnome_schema=org.gnome.desktop.interface
+      gsettings set $gnome_schema gtk-theme 'Dracula'
+    '';
+  };
+
+in
+
+ {
   # You can import other NixOS modules here
   imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
-
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
-
-    # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
   ];
 
@@ -29,6 +49,7 @@
     driSupport = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
+      vulkan-validation-layers
       intel-media-driver
       vaapiIntel
       vaapiVdpau
@@ -40,26 +61,10 @@
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
-    desktopManager = {
-      xterm.enable = false;
-    };
-    deviceSection = ''
-      Option "DRI" "2"
-      Option "TearFree" "true"
-    '';
+    displayManager.gdm.wayland = true;
     layout = "us";
     xkbVariant = "colemak";  
     videoDrivers = [ "nvidia" ];
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-      extraPackages = with pkgs; [
-        dmenu
-        i3status
-        i3lock-pixeled
-        i3blocks
-      ];
-    };
   };
 
   environment.pathsToLink = [ "/libexec" ];
@@ -137,26 +142,40 @@
     dconf.enable = true;
     nm-applet.enable = true;
     steam.enable = true;
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+    };
   };
 
   environment.systemPackages = with pkgs; [
-    autorandr
+    dbus-sway-environment
+    swayosd
+    pavucontrol
+    configure-gtk
+    wayland
+    xdg-utils
+    glib
+    dracula-theme
+    gnome3.adwaita-icon-theme
+    swaylock
+    swayidle
+    grim
+    slurp
+    wl-clipboard
+    bemenu
+    wdisplays
     blueman
     bluez
     bluez-alsa
     cinnamon.nemo
-    dunst
+    swaynotificationcenter
     font-awesome
     jetbrains-mono
     libsForQt5.ark
     libsForQt5.qt5ct
     libva
-    logitech-udev-rules
-    maim
-    nitrogen
     nvidia-vaapi-driver
-    onboard    
-    picom
     (pkgs.python3.withPackages(ps: with ps; [ tkinter ]))
     polkit_gnome
     pulseaudio
@@ -165,25 +184,46 @@
     temurin-jre-bin-8
     udiskie
     virt-manager
-    xclip
-    xdotool
-    xss-lock
   ];
 
   environment.variables = {
     XCURSOR_SIZE = "24";
+    WLR_RENDERER = "vulkan sway";
+  };
+
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   fonts.packages = with pkgs; [
 	font-awesome
 	jetbrains-mono
+        noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
+        source-han-sans
+        source-han-sans-japanese
+        source-han-serif-japanese
   ];
+  fonts.fontconfig.defaultFonts = {
+    serif = [ "Noto Serif" "Source Han Serif" ];
+    sansSerif = [ "Noto Sans" "Source Han Sans" ];
+  };
 
   hardware.bluetooth.enable = true;
+
   services.blueman.enable = true;
-  services.fwupd.enable = true;
+  services.lvm.enable = true;
+  services.udisks2.enable = true;
+  services.printing.enable = true;
 
   console.useXkbConfig = true;
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 
   # TODO: Set your hostname
   networking.hostName = "Hyperion";
@@ -193,7 +233,7 @@
   virtualisation.libvirtd = {
     enable = true;
     extraConfig = ''
-      user="radisys"
+      user="alyx"
     '';
     qemu.ovmf.enable = true;
     qemu.package = pkgs.qemu_kvm;
@@ -204,7 +244,7 @@
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices."luks-dcc16400-847d-4ce5-9c0a-e34e4ee98cee".device = "/dev/disk/by-uuid/dcc16400-847d-4ce5-9c0a-e34e4ee98cee";
+  boot.initrd.luks.devices."luks-6c9d1257-c6e2-4adb-9ba9-b32849f18d3b".device = "/dev/disk/by-uuid/6c9d1257-c6e2-4adb-9ba9-b32849f18d3b";
   boot.supportedFilesystems = [ "exfat" "ntfs" "xfs" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-intel" "vfio_pci" "vfio_virqfd" "vfio_iommu_type1" "vfio" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
@@ -212,8 +252,6 @@
 
   # enable networking
   networking.networkmanager.enable = true;
-
-  services.dbus.enable = true;
 
   # Set a time zone, idiot
   time.timeZone = "Europe/London";
@@ -238,12 +276,6 @@
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
-
-  # udisks
-  services.udisks2.enable = true;
-  
-  # Would you like to be able to fucking print?
-  services.printing.enable = true;
 
   # Sound (kill me now)
   security.rtkit.enable = true;
@@ -272,19 +304,15 @@
   };
 };
 
-  services.lvm.enable = true;
-
   # define user acc
-  users.users.radisys = {
+  users.users.alyx = {
     isNormalUser = true;
-    description = "radisys";
+    description = "alyx";
     extraGroups = ["networkmanager" "wheel" "adbusers" "libvirtd"];
     openssh.authorizedKeys.keys = [
       # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
     ];
   };
-
-  users.extraGroups.vboxusers.members = [ "radisys" ];
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.

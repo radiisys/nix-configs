@@ -11,7 +11,7 @@
       inherit inputs self;
     };
     users = {
-      radisys = ./radisys;
+      alyx = ./alyx;
       # more users can go here, the format is only for convenience
     };
   };
