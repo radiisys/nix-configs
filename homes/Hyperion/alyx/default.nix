@@ -35,6 +35,16 @@
     extraOptions = [ "--unsupported-gpu" ];
   };
   
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.gnome.adwaita-icon-theme;
+    size = 24;
+    X11 = {
+      enable = true;
+      defaultCursor = "Adwaita";
+    };
+  };
+
   systemd.user.targets.tray = {
 	  Unit = {
 		  Description = "Home Manager System Tray";
