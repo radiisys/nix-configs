@@ -12,8 +12,8 @@
   ];
 
   home = {
-    username = "radisys";
-    homeDirectory = "/home/radisys";
+    username = "alyx";
+    homeDirectory = "/home/alyx";
     file.".config/sway/config".source = ./config;
     file.".config/waybar/config".source = ./waybar;
   };
