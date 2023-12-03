@@ -133,6 +133,10 @@ let
     virt-manager
   ];
   
+  environment.variables = {
+    XCURSOR_SIZE = "24";
+  };
+
   fonts.packages = with pkgs; [
 	font-awesome
 	jetbrains-mono
@@ -185,12 +189,12 @@ let
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" "xfs" "ntfs" ];
-  boot.kernelModules = [ "kvm-intel" "vfio_pci" "vfio_virqfd" "vfio_iommu_type1" "vfio" ];
-  boot.extraModprobeConfig = "options vfio-pci ids=8086:1912";
-  boot.kernelParams = [ "intel_iommu=on" "iommu=pt" ];
-  boot.blacklistedKernelModules = [ "i915" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
+  boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "pcie_acs_override=downstream,multifunction" ];
+  boot.blacklistedKernelModules = [ "nvidia" "nouveau" ];
+  boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" "kvm-intel" ];
+  boot.extraModprobeConfig = "options vfio-pci ids=10de:1c03,10de:10f1";
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" ];
   # enable networking
   networking.networkmanager.enable = true;
 
