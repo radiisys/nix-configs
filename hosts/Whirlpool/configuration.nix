@@ -157,6 +157,7 @@ let
   services.logind = {
     extraConfig = "HandlePowerKey=suspend";
   };
+  services.flatpak.enable = true;
 
   xdg.portal = {
     enable = true;
