@@ -49,10 +49,6 @@ let
       rocmPackages.clr.icd
       rocmPackages.clr
       amdvlk
-      vulkan-validation-layers
-      vaapiVdpau
-      libvdpau-va-gl
-      nvidia-vaapi-driver
     ];
     extraPackages32 = with pkgs; [
       driversi686Linux.amdvlk
@@ -61,20 +57,13 @@ let
 
   services.xserver = {
     enable = true;
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = [ "amdgpu" ];
     displayManager.gdm.enable = true;
     displayManager.gdm.wayland = true;
     layout = "us";
   };
   
   environment.pathsToLink = [ "/libexec" ];
-
-  hardware.nvidia = {
-    nvidiaSettings = true;
-    modesetting.enable = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    forceFullCompositionPipeline = true;
-  };
 
   nixpkgs = {
     config = {
@@ -101,9 +90,6 @@ let
     dconf.enable = true;
     sway = {
       enable = true;
-      extraOptions = [
-        "--unsupported-gpu"
-      ];
       wrapperFeatures.gtk = true;
     };	
     };
@@ -145,17 +131,10 @@ let
     temurin-jre-bin-8
     udiskie
     virt-manager
-    nvidia-vaapi-driver
-    libva
   ];
   
   environment.variables = {
     XCURSOR_SIZE = "24";
-    WLR_RENDERER = "vulkan sway";
-  };
-
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   fonts.packages = with pkgs; [
@@ -173,15 +152,12 @@ let
     sansSerif = [ "Noto Sans" "Source Han Sans" ];
   };
 
-  # bluetooth
-  hardware.bluetooth.enable = true;
-
   # services
   services.printing.enable = true;
   services.dbus.enable = true;
   services.udisks2.enable = true;
   services.lvm.enable = true;
-  services.blueman.enable = true;
+  services.zerotierone.enable = true;
   services.logind = {
     extraConfig = "HandlePowerKey=suspend";
   };
@@ -216,7 +192,7 @@ let
   boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "pcie_acs_override=downstream,multifunction" ];
   boot.blacklistedKernelModules = [ "nvidia" "nouveau" ];
   boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" "kvm-intel" ];
-  boot.extraModprobeConfig = "options vfio-pci ids=1002:67df,1002:aaf0";
+  boot.extraModprobeConfig = "options vfio-pci ids=10de:1c03,10de:10f1";
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" ];
   # enable networking
