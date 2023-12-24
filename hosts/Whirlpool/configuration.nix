@@ -217,7 +217,7 @@ let
   boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "pcie_acs_override=downstream,multifunction" ];
   boot.blacklistedKernelModules = [ "nvidia" "nouveau" ];
   boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" "kvm-intel" ];
-  boot.extraModprobeConfig = "options vfio-pci ids=1002:67df,1002:aaf0";
+  boot.extraModprobeConfig = "options vfio-pci ids=1002:67df,1002:aaf0,1b21:2142";
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" ];
   # enable networking
