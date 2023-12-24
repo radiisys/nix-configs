@@ -151,11 +151,12 @@ let
   
   environment.variables = {
     XCURSOR_SIZE = "24";
-    WLR_RENDERER = "vulkan sway";
+    WLR_RENDERER = "vulkan";
   };
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
+    WLR_RENDERER = "vulkan";
   };
 
   fonts.packages = with pkgs; [
