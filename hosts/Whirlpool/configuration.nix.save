@@ -99,6 +99,8 @@ let
     nm-applet.enable = true;
     adb.enable = true;
     dconf.enable = true;
+    nix-ld.enable = true;
+    n
     sway = {
       enable = true;
       extraOptions = [
@@ -152,7 +154,6 @@ let
   environment.variables = {
     XCURSOR_SIZE = "24";
     WLR_RENDERER = "vulkan";
-    XWAYLAND_NO_GLAMOR = "1";
   };
 
   environment.sessionVariables = {
