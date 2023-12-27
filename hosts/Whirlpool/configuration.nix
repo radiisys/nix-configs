@@ -149,15 +149,11 @@ let
     libva
   ];
   
-  environment.variables = {
-    XCURSOR_SIZE = "24";
-    WLR_RENDERER = "vulkan";
-    XWAYLAND_NO_GLAMOR = "1";
-  };
-
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     WLR_RENDERER = "vulkan";
+    XWAYLAND_NO_GLAMOR = "1";
+    XCURSOR_SIZE = "24";
   };
 
   fonts.packages = with pkgs; [
