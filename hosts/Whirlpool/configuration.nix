@@ -45,18 +45,6 @@ let
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-      rocmPackages.clr
-      amdvlk
-      vulkan-validation-layers
-      vaapiVdpau
-      libvdpau-va-gl
-      nvidia-vaapi-driver
-    ];
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-    ];
   };
 
   services.xserver = {
@@ -78,6 +66,7 @@ let
     modesetting.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     forceFullCompositionPipeline = true;
+    open = false;
   };
 
   nixpkgs = {
@@ -136,7 +125,6 @@ let
     jetbrains-mono
     libsForQt5.ark
     libsForQt5.qt5ct
-    libva
     logitech-udev-rules
     (pkgs.discord-canary.override {
       withVencord = true;
@@ -149,13 +137,10 @@ let
     temurin-jre-bin-8
     udiskie
     virt-manager
-    nvidia-vaapi-driver
-    libva
   ];
   
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
-    WLR_RENDERER = "vulkan";
     XWAYLAND_NO_GLAMOR = "1";
     XCURSOR_SIZE = "24";
   };
@@ -215,12 +200,11 @@ let
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" "xfs" "ntfs" ];
-  boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "pcie_acs_override=downstream,multifunction" "nvidia_drm.modeset=1" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
-  boot.blacklistedKernelModules = [ "amdgpu" ];
+  boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "pcie_acs_override=downstream,multifunction" ];
   boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" "kvm-intel" ];
   boot.extraModprobeConfig = "options vfio-pci ids=1002:67df,1002:aaf0,1b21:2142";
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  boot.initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" ];
   # enable networking
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.backend = "iwd";
