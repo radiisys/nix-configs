@@ -61,6 +61,10 @@ let
 
   services.xserver = {
     enable = true;
+    libinput = {
+      enable = true;
+      mouse.accelProfile = "flat";
+    };
     videoDrivers = [ "nvidia" ];
     displayManager.gdm.enable = true;
     displayManager.gdm.wayland = true;
@@ -219,6 +223,7 @@ let
   boot.initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" ];
   # enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
 
   # Set a time zone
   time.timeZone = "Europe/London";

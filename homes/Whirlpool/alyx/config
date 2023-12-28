@@ -50,7 +50,7 @@ output * bg ~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg stretch
    }
 
    input type:pointer {
-       accel_profile flat
+       accel_profile "flat"
    }
 
 #
