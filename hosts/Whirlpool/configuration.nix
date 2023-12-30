@@ -45,6 +45,15 @@ let
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      amdvlk
+      vulkan-validation-layers
+      nvidia-vaapi-driver
+      libvdpau-va-gl
+    ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+    ];
   };
 
   services.xserver = {
@@ -64,8 +73,6 @@ let
   hardware.nvidia = {
     nvidiaSettings = true;
     modesetting.enable = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    forceFullCompositionPipeline = true;
     open = false;
   };
 
@@ -118,21 +125,14 @@ let
     wl-clipboard
     bemenu
     wdisplays
-    openrgb-with-all-plugins
     cinnamon.nemo
     swaynotificationcenter
     font-awesome
     jetbrains-mono
     libsForQt5.ark
-    libsForQt5.qt5ct
-    logitech-udev-rules
-    (pkgs.discord-canary.override {
-      withVencord = true;
-    })
     (pkgs.python3.withPackages(ps: with ps; [ tkinter]))
     polkit_gnome
     pulseaudio
-    solaar
     temurin-bin-18
     temurin-jre-bin-8
     udiskie
@@ -143,6 +143,7 @@ let
     WLR_NO_HARDWARE_CURSORS = "1";
     XWAYLAND_NO_GLAMOR = "1";
     XCURSOR_SIZE = "24";
+    WLR_RENDERER = "vulkan";
   };
 
   fonts.packages = with pkgs; [
