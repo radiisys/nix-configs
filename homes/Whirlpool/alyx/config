@@ -23,7 +23,7 @@ set $menu dmenu_path | bemenu | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
-output * bg ~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg stretch
+output * bg ~/.config/nixos/wallpapers/front.png stretch
 #
 # Example configuration:
 #

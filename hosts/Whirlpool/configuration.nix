@@ -58,10 +58,6 @@ let
     ];
   };
 
-  hardware.vaapi = {
-    enable = true;
-    firefox.enable = true;
-
   services.xserver = {
     enable = true;
     libinput = {
@@ -80,7 +76,15 @@ let
     nvidiaSettings = true;
     modesetting.enable = true;
     open = false;
+    nvidiaPersistenced = true;
+    powerManagement.enable = true;
+    vaapi = {
+      enable = true;
+      firefox.enable = true;
+    };
   };
+
+  hardware.enableAllFirmware = true;
 
   nixpkgs = {
     config = {
@@ -146,6 +150,12 @@ let
   ];
   
   environment.sessionVariables = {
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    LIBVA_DRIVER_NAME = "nvidia";
+    NIXOS_OZONE_WL = "1";
+    __GL_THREADED_OPTIMIZATION = "1";
+    __GL_SHADER_CACHE = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
     XWAYLAND_NO_GLAMOR = "1";
     XCURSOR_SIZE = "24";
