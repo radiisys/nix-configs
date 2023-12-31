@@ -39,7 +39,6 @@ let
  {
   imports = [
     ./hardware-configuration.nix
-    ./vaapi.nix
   ];
 
   hardware.opengl = {
@@ -65,8 +64,6 @@ let
       mouse.accelProfile = "flat";
     };
     videoDrivers = [ "nvidia" ];
-    displayManager.gdm.enable = true;
-    displayManager.gdm.wayland = true;
     layout = "us";
   };
   
@@ -77,11 +74,8 @@ let
     modesetting.enable = true;
     open = false;
     nvidiaPersistenced = true;
+    forceFullCompositionPipeline = true;
     powerManagement.enable = true;
-    vaapi = {
-      enable = true;
-      firefox.enable = true;
-    };
   };
 
   hardware.enableAllFirmware = true;
@@ -121,6 +115,7 @@ let
   environment.systemPackages = with pkgs; [
     dbus-sway-environment
     swayosd
+    dbus
     pavucontrol
     configure-gtk
     wayland
@@ -150,13 +145,29 @@ let
   ];
   
   environment.sessionVariables = {
-    #GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    LIBVA_DRIVER_NAME = "nvidia";
     WLR_NO_HARDWARE_CURSORS = "1";
-    XWAYLAND_NO_GLAMOR = "1";
     XCURSOR_SIZE = "24";
     WLR_RENDERER = "vulkan";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    LIBVA_DRIVER_NAME = "nvidia";
+    GDK_BACKEND = "wayland,x11";
+    SDL_VIDEODRIVER = "wayland";
+    CLUTTER_BACKEND = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
+    __GL_MaxFramesAllowed = "1";
+    WLR_RENDERER_ALLOW_SOFTWARE = "1";
+    MOZ_DISABLE_RDD_SANDBOX = "1";
+    JAVA_AWT_WM_NONREPARENTING="1";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    QT_QPA_PLATFORM = "wayland";
+    PROTON_ENABLE_NGX_UPDATER = "1";
+    NVD_BACKEND = "direct";
+    __GL_GSYNC_ALLOWED = "1";
+    __GL_VRR_ALLOWED = "1";
+    WLR_DRM_NO_ATOMIC = "1";
+    WLR_USE_LIBINPUT = "1";
+    XWAYLAND_NO_GLAMOR = "1";
   };
 
   fonts.packages = with pkgs; [
@@ -188,6 +199,27 @@ let
   };
   services.flatpak.enable = true;
 
+  # greetd
+  services.greetd = {
+    enable = true;
+      settings = {
+        default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+          user = "greeter";
+        };
+      };
+  };
+
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal";
+    TTYReset = "true";
+    TTYHangup = "true";
+    TTYVTDisallocate = true;
+  };
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -213,13 +245,14 @@ let
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/";
+  boot.initrd.luks.devices."luks-5534173a-6cfa-4d09-a21c-fb06afbf5481".device = "/dev/disk/by-uuid/5534173a-6cfa-4d09-a21c-fb06afbf5481";
   boot.supportedFilesystems = [ "exfat" "xfs" "ntfs" ];
-  boot.kernelParams = [ "intel_iommu=on" "pcie_acs_override=downstream,multifunction" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia.NVreg_TemporaryFilePath=/var/tmp"];
+  boot.kernelParams = [ "intel_iommu=on" "pcie_acs_override=downstream,multifunction" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia.NVreg_TemporaryFilePath=/var/tmp" "nvidia_drm.modeset=1" ];
   boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" "kvm-intel" ];
   boot.extraModprobeConfig = "options vfio-pci ids=1002:67df,1002:aaf0,1b21:2142";
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.blacklistedKernelModules = [ "amdgpu" ];
+  boot.blacklistedKernelModules = [ "nvidia" ];
+
   # enable networking
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.backend = "iwd";
@@ -292,5 +325,5 @@ services.openssh = {
     };
   };
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "24.05";
 }
