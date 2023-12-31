@@ -5,6 +5,8 @@
     wob
     vlc
     wget
+    dnsmasq
+    nbd
     alacritty
     beeper
     brightnessctl

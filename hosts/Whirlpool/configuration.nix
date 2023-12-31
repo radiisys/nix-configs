@@ -208,7 +208,8 @@ let
         '';
 	qemu.ovmf.enable = true;
         qemu.package = pkgs.qemu_kvm;
-	qemu.runAsRoot = true;  
+	qemu.runAsRoot = true;
+        qemu.swtpm.enable = true;  
   };
 
   virtualisation.spiceUSBRedirection.enable = true;
@@ -217,11 +218,11 @@ let
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" "xfs" "ntfs" ];
-  boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "pcie_acs_override=downstream,multifunction" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia.NVreg_TemporaryFilePath=/var/tmp"];
+  boot.kernelParams = [ "intel_iommu=on" "pcie_acs_override=downstream,multifunction" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia.NVreg_TemporaryFilePath=/var/tmp"];
   boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" "kvm-intel" ];
   boot.extraModprobeConfig = "options vfio-pci ids=1002:67df,1002:aaf0,1b21:2142";
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" ];
+  boot.blacklistedKernelModules = [ "amdgpu" ];
   # enable networking
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.backend = "iwd";
