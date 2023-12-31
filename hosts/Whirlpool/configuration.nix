@@ -150,12 +150,9 @@ let
   ];
   
   environment.sessionVariables = {
-    GBM_BACKEND = "nvidia-drm";
+    #GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     LIBVA_DRIVER_NAME = "nvidia";
-    NIXOS_OZONE_WL = "1";
-    __GL_THREADED_OPTIMIZATION = "1";
-    __GL_SHADER_CACHE = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
     XWAYLAND_NO_GLAMOR = "1";
     XCURSOR_SIZE = "24";
