@@ -39,6 +39,7 @@ let
  {
   imports = [
     ./hardware-configuration.nix
+    ./vaapi.nix
   ];
 
   hardware.opengl = {
@@ -50,11 +51,16 @@ let
       vulkan-validation-layers
       nvidia-vaapi-driver
       libvdpau-va-gl
+      vaapiVdpau
     ];
     extraPackages32 = with pkgs; [
       driversi686Linux.amdvlk
     ];
   };
+
+  hardware.vaapi = {
+    enable = true;
+    firefox.enable = true;
 
   services.xserver = {
     enable = true;
@@ -201,7 +207,7 @@ let
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/";
   boot.supportedFilesystems = [ "exfat" "xfs" "ntfs" ];
-  boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "pcie_acs_override=downstream,multifunction" ];
+  boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "pcie_acs_override=downstream,multifunction" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia.NVreg_TemporaryFilePath=/var/tmp"];
   boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" "kvm-intel" ];
   boot.extraModprobeConfig = "options vfio-pci ids=1002:67df,1002:aaf0,1b21:2142";
   boot.kernelPackages = pkgs.linuxPackages_zen;
