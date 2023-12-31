@@ -158,7 +158,7 @@ output * bg ~/.config/nixos/wallpapers/PXL_20230330_082202740.PANO.jpg stretch
 
 # Default workspaces
     workspace 1 output DP-2
-    workspace 2 output DVI-D-1
+    workspace 2 output HDMI-A-1
 #
 # Layout stuff:
 #
