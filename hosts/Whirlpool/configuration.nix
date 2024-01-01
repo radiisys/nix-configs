@@ -247,11 +247,12 @@ let
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.luks.devices."luks-5534173a-6cfa-4d09-a21c-fb06afbf5481".device = "/dev/disk/by-uuid/5534173a-6cfa-4d09-a21c-fb06afbf5481";
   boot.supportedFilesystems = [ "exfat" "xfs" "ntfs" ];
-  boot.kernelParams = [ "iommu=pt" "kvm.ignore_msrs=1" "video=vesafb:off,efifb:off" "intel_iommu=on" "pcie_acs_override=downstream,multifunction" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia.NVreg_TemporaryFilePath=/var/tmp" "nvidia_drm.modeset=1" ];
-  boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" "kvm-intel" ];
-  boot.extraModprobeConfig = "options vfio-pci ids=1002:67df,1002:aaf0,1b21:2142,8086:3e92";
+  boot.kernelParams = [ "module_blacklist=amdgpu" "intel_iommu=on" "pcie_acs_override=downstream,multifunction" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia.NVreg_TemporaryFilePath=/var/tmp" "nvidia_drm.modeset=1" ];
+  boot.initrd.kernelModules = [ "vfio_pci" "vfio_iommu_type1" "vfio" "kvm-intel" ];
+  boot.kernelModules = [ "vfio_virqfd" ];
+  boot.extraModprobeConfig = "options vfio-pci ids=1002:67df,1002:aaf0,1b21:2142";
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.blacklistedKernelModules = [ "nvidia" ];
+  boot.blacklistedKernelModules = [ "amdgpu" ];
 
   # enable networking
   networking.networkmanager.enable = true;
@@ -311,7 +312,7 @@ let
   users.users.alyx = {
     isNormalUser = true;
     description = "alyx";
-    extraGroups = ["networkmanager" "wheel" "adbusers" "libvirtd"];
+    extraGroups = ["networkmanager" "wheel" "adbusers" "libvirtd" "kvm" ];
     openssh.authorizedKeys.keys = [
       # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
     ];

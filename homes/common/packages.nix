@@ -31,5 +31,6 @@
     spotify
     stellarium
     vscodium
+    barrier
   ];
 }
