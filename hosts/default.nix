@@ -9,30 +9,17 @@
 
   home-manager = inputs.home-manager.nixosModules.home-manager;
   homeHyperion = ../homes/Hyperion;
-  homeWhirlpool = ../homes/Whirlpool;
-  homeGanymede = ../homes/Ganymede;
-  homeEdible = ../homes/Edible;
+  homeMillwright = ../homes/Millwright;
 
 in {
-  Ganymede = nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs outputs;};
-    modules = [
-      # this list defines which files will be imported to be used as "modules" in the system config
-      ./Ganymede/configuration.nix
-      # use the nixos-module for home-manager
-      home-manager
-      homeGanymede
-    ];
-  };
-
-  Whirlpool = nixpkgs.lib.nixosSystem {
+  Millwright = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs outputs;};
     modules = [
       # this list defines which files will be imported to be used as "modules" in the system config
       ./Whirlpool/configuration.nix
       # use the nixos-module for home-manager
       home-manager
-      homeWhirlpool
+      homeMillwright
     ];
   };
 
@@ -44,17 +31,6 @@ in {
       # use the nixos-module for home-manager
       home-manager
       homeHyperion
-    ];
-  };
-
-  Edible = nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs outputs;};
-    modules = [
-      nixos-hardware.nixosModules.microsoft-surface-common
-      ./Edible/configuration.nix
-      # use the nixos-module for home-manager
-      home-manager
-      homeEdible
     ];
   };
 }

@@ -39,5 +39,5 @@
   systemd.user.startServices = lib.mkDefault "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "22.11";
+  home.stateVersion = "24.05";
 }

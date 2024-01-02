@@ -197,7 +197,6 @@ let
   services.logind = {
     extraConfig = "HandlePowerKey=suspend";
   };
-  services.flatpak.enable = true;
 
   # greetd
   services.greetd = {
@@ -228,7 +227,7 @@ let
 
   console.useXkbConfig = true;
 
-  networking.hostName = "Whirlpool";
+  networking.hostName = "Millwright";
 
   virtualisation.libvirtd = {
 	enable = true;
