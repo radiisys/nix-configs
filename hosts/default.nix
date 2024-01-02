@@ -16,7 +16,7 @@ in {
     specialArgs = {inherit inputs outputs;};
     modules = [
       # this list defines which files will be imported to be used as "modules" in the system config
-      ./Whirlpool/configuration.nix
+      ./Millwright/configuration.nix
       # use the nixos-module for home-manager
       home-manager
       homeMillwright
