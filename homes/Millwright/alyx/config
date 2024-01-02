@@ -20,6 +20,8 @@ set $term alacritty
 # on the original workspace that the command was run on.
 set $menu dmenu_path | bemenu | xargs swaymsg exec --
 
+exec systemctl --user start user-graphical-session.target
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
@@ -230,7 +232,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command ~/.config/nixos/homes/Whirlpool/alyx/bar.sh
+    status_command ~/.config/nixos/homes/Millwright/alyx/bar.sh
 
     colors {
         statusline #ffffff
