@@ -115,6 +115,8 @@ let
   environment.systemPackages = with pkgs; [
     dbus-sway-environment
     swayosd
+    i2c-tools
+    ddcutil
     dbus
     pavucontrol
     configure-gtk
@@ -187,6 +189,7 @@ let
 
   # bluetooth
   hardware.bluetooth.enable = true;
+  hardware.i2c.enable = true;
 
   # services
   services.printing.enable = true;
@@ -194,6 +197,7 @@ let
   services.udisks2.enable = true;
   services.lvm.enable = true;
   services.blueman.enable = true;
+  services.ddccontrol.enable = true;
   services.logind = {
     extraConfig = "HandlePowerKey=suspend";
   };
