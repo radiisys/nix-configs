@@ -65,6 +65,11 @@ let
     };
     videoDrivers = [ "nvidia" ];
     layout = "us";
+    windowManager.afterstep.enable = true;
+    windowManager.berry.enable = true;
+    windowManager.bspwm.enable = true;
+    windowManager.awesome.enable = true;
+    windowManager.xmonad.enable = true;
   };
   
   environment.pathsToLink = [ "/libexec" ];
