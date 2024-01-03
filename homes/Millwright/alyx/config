@@ -101,8 +101,8 @@ output * bg ~/.config/nixos/wallpapers/front.png stretch
     exec waybar
 
     # monitor output switching
-    bindsym $mod+o exec ddcutil --bus=7 setvcp 60 11 & - hdmi-1
-
+    bindsym $mod+o exec ddcutil --bus=7 setvcp 60 11 &
+    bindsym $mod+Shift+o exec ddcutil --bus=4 setvcp 60 03 &
     # Volume control
     bindsym XF86AudioRaiseVolume exec swayosd --output-volume raise
     bindsym XF86AudioLowerVolume exec  swayosd --output-volume lower
