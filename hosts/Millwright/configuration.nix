@@ -65,6 +65,7 @@ let
     };
     videoDrivers = [ "nvidia" ];
     layout = "us";
+    displayManager.lightdm.enable = true;
     windowManager.afterstep.enable = true;
     windowManager.berry.enable = true;
     windowManager.bspwm.enable = true;
@@ -213,6 +214,7 @@ let
       settings = {
         default_session = {
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+        sessions = "--sessions ${config.services.xserver.displayManager.sessionData.desktops}/share/xsessions";
           user = "greeter";
         };
       };
