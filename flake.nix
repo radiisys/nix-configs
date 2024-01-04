@@ -5,7 +5,6 @@
     # Nixpkgs (unstable)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
-
     # Home manager
     home-manager.url = "github:nix-community/home-manager/";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -17,9 +16,9 @@
     };
 	
     # nixos-hardware
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";    
   };
+  
 
   outputs = {
     self,
@@ -49,7 +48,6 @@
       in
         import ./shell.nix {inherit pkgs;}
     );
-
     nixosModules = import ./modules/shared/nixos;
     homeManagerModules = import ./modules/shared/home-manager;
     nixosConfigurations = import ./hosts {inherit nixpkgs self outputs nixos-hardware;};   

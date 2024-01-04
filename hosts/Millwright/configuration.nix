@@ -103,6 +103,7 @@ let
     nm-applet.enable = true;
     adb.enable = true;
     dconf.enable = true;
+    wayfire.enable = true;
     sway = {
       enable = true;
       extraOptions = [
@@ -148,7 +149,7 @@ let
   
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
-    XCURSOR_SIZE = "24";
+    #XCURSOR_SIZE = "24";
     WLR_RENDERER = "vulkan";
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
@@ -157,17 +158,11 @@ let
     SDL_VIDEODRIVER = "wayland";
     CLUTTER_BACKEND = "wayland";
     MOZ_ENABLE_WAYLAND = "1";
-    __GL_MaxFramesAllowed = "1";
     WLR_RENDERER_ALLOW_SOFTWARE = "1";
-    MOZ_DISABLE_RDD_SANDBOX = "1";
-    JAVA_AWT_WM_NONREPARENTING="1";
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     QT_QPA_PLATFORM = "wayland";
-    PROTON_ENABLE_NGX_UPDATER = "1";
-    NVD_BACKEND = "direct";
     __GL_GSYNC_ALLOWED = "1";
-    __GL_VRR_ALLOWED = "1";
-    WLR_DRM_NO_ATOMIC = "1";
+    __GL_VRR_ALLOWED = "1";    
     WLR_USE_LIBINPUT = "1";
     XWAYLAND_NO_GLAMOR = "1";
   };
